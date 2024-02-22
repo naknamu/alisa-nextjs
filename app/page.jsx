@@ -1,8 +1,9 @@
 import style from "./page.module.css"
+import Link from "next/link";
 
 // fetch images from the API
 async function getImages() {
-  const res = await fetch("http://localhost:3001/api/images", {
+  const res = await fetch("http://localhost:3000/api/images", {
     next: {
       revalidate: 60 * 60,
     }
@@ -10,6 +11,7 @@ async function getImages() {
 
   return res.json();
 }
+
 
 export default async function Home() {
 
@@ -19,7 +21,10 @@ export default async function Home() {
     <main className={style.main}>
       {images.map((image) => (
         <div key={image._id} className={style.card}>
-        <h3>{image.caption}</h3>
+        <Link href={`uploader/${image.uploader.slug}`}> 
+          <h3 className={style.h3}>{image.uploader.username}</h3>
+        </Link>
+        <p>{image.caption}</p>
         <img className={style.img} src={image.source} alt={image.caption} />
         </div>
       ))}

@@ -1,5 +1,4 @@
 .main {
-  color: blue;
   margin: auto;
   max-width: 500px;
   padding-top: 5rem;
@@ -17,8 +16,17 @@
   border-radius: 12px;
 }
 
+.h3 {
+  cursor: pointer;
+}
+
+.h3:hover {
+ text-decoration: underline;
+}
+
 .img {
   max-width: 100%;
+  cursor: pointer;
 }
 
 /* Mobile */
