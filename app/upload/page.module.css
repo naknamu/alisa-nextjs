@@ -1,0 +1,33 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form > div > * {
+    margin-block-end: 1rem;
+}
+
+.input {
+    padding: 5px;
+    width: 100%;
+    border: 1px solid #ffff;
+}
+
+.textarea {
+    border: 1px solid #ffff;
+    padding: 5px;
+    width: 100%;
+    resize: none;
+}
+
+.input:focus,
+.textarea:focus {
+    outline: none;
+    border: 1px solid black;
+}
+
+.checkbox {
+    display: flex;
+    gap: 1rem;
+}

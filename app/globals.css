@@ -9,7 +9,7 @@ body {
 }
 
 main {
-  padding-top: 5rem;
+  padding-block: 5rem;
   margin: auto;
   max-width: 500px;
   display: flex;
@@ -29,4 +29,14 @@ a {
   background-color:#ffffff;
   padding: 1rem;
   border-radius: 12px;
+}
+
+label {
+  display: block;
+}
+
+input,
+textarea {
+  font: inherit;
+  border: none;
 }
