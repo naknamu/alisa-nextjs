@@ -5,7 +5,7 @@ import Link from "next/link";
 async function getImages() {
   const res = await fetch("http://localhost:3000/api/images", {
     next: {
-      revalidate: 60 * 60,
+      revalidate: 0,
     }
   });
 

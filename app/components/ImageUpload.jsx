@@ -36,6 +36,7 @@ export default function ImageUpload({ previewFile, setPreviewFile}) {
         name="my-image-id"
         onChange={handleChange}
         className={style.input}
+        required
         // accept="image/png, image/jpeg"
       />
     </div>

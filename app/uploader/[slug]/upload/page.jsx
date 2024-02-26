@@ -3,23 +3,30 @@
 import ImageUpload from "@/app/components/ImageUpload";
 import style from "./page.module.css";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+const _ = require('lodash');
 
 export default function Upload({ params }) {
+  const router = useRouter();
   // preview image to be uploaded to B2B
   const [previewFile, setPreviewFile] = useState();
 
-  const [source, setSource] = useState("");
   const [caption, setCaption] = useState("");
   const [prompt, setPrompt] = useState("");
   const [categories, setCategories] = useState(null);
+  const [chosenCategory, setChosenCategory] = useState([]);
   const [uploader, setUploader] = useState("");
+  const [isUploading, setIsUploading] = useState(false);
 
   const uploadImage = async (e) => {
     const { file } = previewFile;
 
+    // slugify the caption to be used as image filename
+    const slugCaption = _.kebabCase(caption);
+
     // // Rename the file before sending if you want
     const fileExt = file.name.substring(file.name.lastIndexOf(".") + 1);
-    const fileName = `image.${fileExt}`;
+    const fileName = `${slugCaption}.${fileExt}`;
 
     const formData = new FormData();
     formData.append("file", file);
@@ -39,8 +46,8 @@ export default function Upload({ params }) {
       const data = await response.json();
       // use the image URL returned from the API response
       const { url } = data;
-      // asign the URL to a react state to be sent to the Database
-      setSource(url);
+
+      return url;
     } catch (err) {
       console.error("Error:", err);
     }
@@ -57,23 +64,86 @@ export default function Upload({ params }) {
       setCategories(data);
     };
 
+    // fetch uploader details from the API
+    const getUploader = async (slug) => {
+      const res = await fetch("http://localhost:3000/api/uploaders/" + slug, {
+        next: {
+          revalidate: 0,
+        }
+      });
+
+      const data = await res.json();
+
+      setUploader(data._id)
+    }
+
     getCategories();
+    getUploader(params.slug);
   }, []);
 
-  const handleUpload = (e) => {
+  const handleCaption = (e) => {
+    setCaption(e.target.value);
+  };
+
+  const handlePrompt = (e) => {
+    setPrompt(e.target.value);
+  };
+
+  const handleCheckbox = (e) => {
+    if (e.target.checked) {
+      setChosenCategory((category) => [...category, e.target.value]);
+    } else {
+      setChosenCategory(
+        chosenCategory.filter((category) => category !== e.target.value)
+      );
+    }
+  };
+
+  const handleUpload = async (e) => {
     e.preventDefault();
+    // Change uploading status
+    setIsUploading(true);
 
     // Upload image to Backblaze B2
-    uploadImage();
+    const source = await uploadImage();
+
+    const image = {
+      source,
+      caption,
+      prompt,
+      category: chosenCategory,
+      uploader,
+    };
+
+    console.log(image);
+
+    const res = await fetch("http://localhost:3000/api/image/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(image)
+    })
+
+    if (res.status === 200) {
+      router.refresh();
+      router.push("/");
+    }
   };
 
   return (
     <main>
       <form className={style.form}>
         <h2>Upload Image</h2>
-        <ImageUpload previewFile={previewFile} setPreviewFile={setPreviewFile} />
+        <ImageUpload
+          previewFile={previewFile}
+          setPreviewFile={setPreviewFile}
+        />
+
         <div>
-          <label className={style.label} htmlFor="caption">Caption:</label>
+          <label className={style.label} htmlFor="caption">
+            Caption:
+          </label>
           <input
             type="text"
             id="caption"
@@ -81,11 +151,14 @@ export default function Upload({ params }) {
             placeholder="A beautiful sunset by the seashore"
             required
             className={style.input}
+            onChange={handleCaption}
           />
         </div>
 
         <div>
-          <label className={style.label} htmlFor="prompt">Prompt:</label>
+          <label className={style.label} htmlFor="prompt">
+            Prompt:
+          </label>
           <textarea
             type="text"
             id="prompt"
@@ -93,23 +166,38 @@ export default function Upload({ params }) {
             placeholder="A beautiful sunset by the seashore, realistic, cinematic, extremely detailed"
             rows={10}
             className={style.textarea}
+            onChange={handlePrompt}
           />
         </div>
-        
+
         <label className={style.label}>Chooose image category:</label>
         {categories?.map((category) => (
-            <div key={category._id} className={style.checkbox}>
-                <input type="checkbox" name={category.name} id={category.name} />
-                <label htmlFor={category.name}>{category.name}</label>
-            </div>
+          <div key={category._id} className={style.checkbox}>
+            <input
+              type="checkbox"
+              name={category.name}
+              id={category._id}
+              value={category._id}
+              onChange={handleCheckbox}
+            />
+            <label htmlFor={category.name}>{category.name}</label>
+          </div>
         ))}
 
-        <button className={style.button}
+        <button
+          className={style.button}
           onClick={(e) => {
             handleUpload(e);
           }}
+          disabled={
+            !previewFile ||
+            !caption ||
+            !(chosenCategory.length > 0) ||
+            isUploading
+          }
         >
-          Upload
+          {isUploading && <span>Uploading...</span>}
+          {!isUploading && <span>Upload Image</span>}
         </button>
       </form>
     </main>
