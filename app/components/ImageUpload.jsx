@@ -1,4 +1,4 @@
-import { useState } from "react";
+import style from "./ImageUpload.module.css"
 
 export default function ImageUpload({ previewFile, setPreviewFile}) {
 
@@ -24,8 +24,8 @@ export default function ImageUpload({ previewFile, setPreviewFile}) {
   };
 
   return (
-    <main>
-      <div>
+    <div>
+      <div className={style.preview}>
         {previewFile && (
           <img style={{ width: "300px" }} src={previewFile.base64} />
         )}
@@ -35,8 +35,9 @@ export default function ImageUpload({ previewFile, setPreviewFile}) {
         id="my-image-id"
         name="my-image-id"
         onChange={handleChange}
+        className={style.input}
         // accept="image/png, image/jpeg"
       />
-    </main>
+    </div>
   );
 }

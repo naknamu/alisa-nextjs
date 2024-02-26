@@ -69,13 +69,11 @@ export default function Upload({ params }) {
 
   return (
     <main>
-      <h2>Upload Image</h2>
-
       <form className={style.form}>
+        <h2>Upload Image</h2>
         <ImageUpload previewFile={previewFile} setPreviewFile={setPreviewFile} />
-
         <div>
-          <label htmlFor="caption">Caption:</label>
+          <label className={style.label} htmlFor="caption">Caption:</label>
           <input
             type="text"
             id="caption"
@@ -87,7 +85,7 @@ export default function Upload({ params }) {
         </div>
 
         <div>
-          <label htmlFor="prompt">Prompt:</label>
+          <label className={style.label} htmlFor="prompt">Prompt:</label>
           <textarea
             type="text"
             id="prompt"
@@ -98,7 +96,7 @@ export default function Upload({ params }) {
           />
         </div>
         
-        <h3>Chooose image category:</h3>
+        <label className={style.label}>Chooose image category:</label>
         {categories?.map((category) => (
             <div key={category._id} className={style.checkbox}>
                 <input type="checkbox" name={category.name} id={category.name} />
@@ -106,7 +104,7 @@ export default function Upload({ params }) {
             </div>
         ))}
 
-        <button
+        <button className={style.button}
           onClick={(e) => {
             handleUpload(e);
           }}
