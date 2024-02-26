@@ -5,7 +5,8 @@ import style from "./page.module.css";
 import { useState, useEffect } from "react";
 
 export default function Upload({ params }) {
-  const [selectedImage, setSelectedImage] = useState(null);
+  // preview image to be uploaded to B2B
+  const [previewFile, setPreviewFile] = useState();
 
   const [source, setSource] = useState("");
   const [caption, setCaption] = useState("");
@@ -13,59 +14,67 @@ export default function Upload({ params }) {
   const [categories, setCategories] = useState(null);
   const [uploader, setUploader] = useState("");
 
+  const uploadImage = async (e) => {
+    const { file } = previewFile;
+
+    // // Rename the file before sending if you want
+    const fileExt = file.name.substring(file.name.lastIndexOf(".") + 1);
+    const fileName = `image.${fileExt}`;
+
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("x-filename", fileName);
+
+    try {
+      // Use fetch instead of axios.post
+      const response = await fetch(`/api/upload`, {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      // Assuming the response is JSON, parse it
+      const data = await response.json();
+      // use the image URL returned from the API response
+      const { url } = data;
+      // asign the URL to a react state to be sent to the Database
+      setSource(url);
+    } catch (err) {
+      console.error("Error:", err);
+    }
+
+    setPreviewFile();
+  };
+
   useEffect(() => {
-    const getCategories = async() => {
+    const getCategories = async () => {
       const res = await fetch("http://localhost:3000/api/categories/");
 
       const data = await res.json();
 
       setCategories(data);
-    }
+    };
 
     getCategories();
-  
-  }, [])
+  }, []);
 
   const handleUpload = (e) => {
     e.preventDefault();
 
-    // check URL 
-    console.log(source);
-  }
+    // Upload image to Backblaze B2
+    uploadImage();
+  };
 
   return (
     <main>
       <h2>Upload Image</h2>
 
       <form className={style.form}>
-        
-        {/* <input type="text" name="username" className={style.input} /> */}
+        <ImageUpload previewFile={previewFile} setPreviewFile={setPreviewFile} />
 
-        {/* <div>
-          {selectedImage && (
-            <div>
-              <img
-                alt="no-found"
-                width={"250px"}
-                src={URL.createObjectURL(selectedImage)}
-              />
-              <br />
-            </div>
-          )}
-          <input
-            type="file"
-            name="image"
-            id="image"
-            onChange={(event) => {
-              console.log(event.target.files[0]);
-              setSelectedImage(event.target.files[0]);
-            }}
-          />
-        </div> */}
-
-        <ImageUpload setSource={setSource} />
-
-        {/* <div>
+        <div>
           <label htmlFor="caption">Caption:</label>
           <input
             type="text"
@@ -95,11 +104,16 @@ export default function Upload({ params }) {
                 <input type="checkbox" name={category.name} id={category.name} />
                 <label htmlFor={category.name}>{category.name}</label>
             </div>
-        ))} */}
+        ))}
 
-        <button onClick={(e) => {handleUpload(e)}}>Upload</button>
+        <button
+          onClick={(e) => {
+            handleUpload(e);
+          }}
+        >
+          Upload
+        </button>
       </form>
-
     </main>
   );
 }
