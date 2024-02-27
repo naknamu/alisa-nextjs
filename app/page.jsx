@@ -5,7 +5,7 @@ import Link from "next/link";
 async function getImages() {
   const res = await fetch("http://localhost:3000/api/images", {
     next: {
-      revalidate: 0,
+      revalidate: 60,
     }
   });
 
@@ -25,7 +25,9 @@ export default async function Home() {
           <h3 className={style.h3}>{image.uploader.username}</h3>
         </Link>
         <p>{image.caption}</p>
-        <img className={style.img} src={image.source} alt={image.caption} />
+        <Link href={`images/${image.slug}`}>
+          <img className={style.img} src={image.source} alt={image.caption} />
+        </Link>
         </div>
       ))}
     </main>

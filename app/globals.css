@@ -26,6 +26,11 @@ a {
   color: inherit;
 }
 
+a:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .card {
   display: flex;
   flex-direction: column;

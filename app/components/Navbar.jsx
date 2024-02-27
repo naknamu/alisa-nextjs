@@ -5,7 +5,7 @@ export default function Navbar() {
   return (
     <nav className={style.nav}>
         <Link href="/">
-          <h1>Alisa</h1>
+          <h1 className={style.logo}>Alisa</h1>
         </Link>
         <Link href="/login">Login</Link>
     </nav>
