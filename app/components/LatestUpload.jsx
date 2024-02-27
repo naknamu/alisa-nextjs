@@ -13,11 +13,14 @@ export default async function LatestUpload() {
 
   const latest = await getLatestUpload();
 
+  // Return only five latest images uploaded
+  const limitLatest = latest.slice(0, 5);
+
   return (
     <div className={style.container}>
         <div className={style.content}>
           <h3>Latest Upload</h3>
-          {latest.map((image) => (
+          {limitLatest.map((image) => (
             <button key={image._id} className="btn_primary">
               <div>{image.uploader.username}</div>
               <p>{image.caption}</p>

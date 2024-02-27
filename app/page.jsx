@@ -9,7 +9,7 @@ async function getImages() {
 
   const res = await fetch(`${api.url}/images`, {
     next: {
-      revalidate: 10,
+      revalidate: 60 * 15,
     },
   });
 

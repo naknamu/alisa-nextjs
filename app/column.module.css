@@ -14,7 +14,7 @@
 
   .left_column:hover, 
   .right_column:hover {
-    overflow-y: scroll;
+    overflow-y: auto;
   }
   
   .left_column {
