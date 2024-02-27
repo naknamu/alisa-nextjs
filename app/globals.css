@@ -54,3 +54,7 @@ input:focus,
 textarea:focus {
   outline: none;
 }
+
+.link:hover {
+  text-decoration: underline;
+}

@@ -6,8 +6,8 @@ export default function ImageCards({ images }) {
     <div className={style.container}>
       {images.map((image) => (
           <div key={image._id} className={style.card}>
-            <Link href={`/uploader/${image.uploader.slug}`}>
-              <h3 className={style.h3}>{image.uploader.username}</h3>
+            <Link href={`/uploader/${image.uploader.slug}`} className="link">
+              <h3>{image.uploader.username}</h3>
             </Link>
             <p>{image.caption}</p>
             <Link href={`/images/${image.slug}`}>

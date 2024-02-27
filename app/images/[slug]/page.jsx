@@ -1,3 +1,4 @@
+import CategoryBtn from "@/app/components/CategoryBtn";
 import style from "./page.module.css"
 import Link from "next/link";
 
@@ -22,7 +23,7 @@ export default async function ImageDetail({ params }) {
              <img src={`${image.source}`} alt={`${image.slug}`} className={style.image} />
             </div>
             <div className={style.detail_wrap}>
-                <Link href={`/uploader/${image.uploader.slug}`}>
+                <Link href={`/uploader/${image.uploader.slug}`} className="link">
                     <h3>{image.uploader.username}</h3>
                 </Link>
                 <div>{image.caption}</div>
@@ -30,11 +31,7 @@ export default async function ImageDetail({ params }) {
                     <b>Prompt:</b>
                     <p>{image.prompt}</p>
                 </div>
-                <div className={style.category}>
-                    {image.category.map((category) => (
-                        <p key={category._id}>{category.name}</p>
-                    ))}
-                </div>
+                <CategoryBtn categories={image.category} />
             </div>
         </div>
     )
