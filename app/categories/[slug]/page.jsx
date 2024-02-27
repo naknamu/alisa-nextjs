@@ -1,5 +1,5 @@
 import Categories from "@/app/components/Categories";
-import style from "./page.module.css";
+import style from "@/app/column.module.css";
 import ImageCards from "@/app/components/ImageCards";
 
 // fetch images uploaded by category
