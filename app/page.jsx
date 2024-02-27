@@ -1,10 +1,12 @@
+import api from "@/config";
 import Categories from "./components/Categories";
-import style from "./page.module.css";
-import Link from "next/link";
+import style from "./column.module.css";
+import ImageCards from "./components/ImageCards";
 
 // fetch images from the API
 async function getImages() {
-  const res = await fetch("http://localhost:3000/api/images", {
+
+  const res = await fetch(`${api.url}/images`, {
     next: {
       revalidate: 10,
     },
@@ -25,21 +27,7 @@ export default async function Home() {
       </div>
       <div className={style.middle_column}>
         <div className={`${style.middle}`}>
-          {images.map((image) => (
-            <div key={image._id} className={style.card}>
-              <Link href={`uploader/${image.uploader.slug}`}>
-                <h3 className={style.h3}>{image.uploader.username}</h3>
-              </Link>
-              <p>{image.caption}</p>
-              <Link href={`images/${image.slug}`}>
-                <img
-                  className={style.img}
-                  src={image.source}
-                  alt={image.caption}
-                />
-              </Link>
-            </div>
-          ))}
+          <ImageCards images={images} />
         </div>
       </div>
       <div className={style.right_column}>

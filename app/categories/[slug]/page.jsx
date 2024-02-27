@@ -1,6 +1,6 @@
 import Categories from "@/app/components/Categories";
 import style from "./page.module.css";
-import Link from "next/link";
+import ImageCards from "@/app/components/ImageCards";
 
 // fetch images uploaded by category
 async function getImagesByCategory(slug) {
@@ -33,21 +33,7 @@ export default async function Category({ params }) {
       </div>
       <div className={style.middle_column}>
         <div className={`${style.middle}`}>
-            {images.map((image) => (
-                <div key={image._id} className={style.card}>
-                <Link href={`/uploader/${image.uploader.slug}`}>
-                    <h3 className={style.h3}>{image.uploader.username}</h3>
-                </Link>
-                <p>{image.caption}</p>
-                <Link href={`/images/${image.slug}`}>
-                    <img
-                    className={style.img}
-                    src={image.source}
-                    alt={image.caption}
-                    />
-                </Link>
-                </div>
-            ))}
+            <ImageCards images={images} />
         </div>
       </div>
       <div className={style.right_column}>

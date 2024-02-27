@@ -9,7 +9,6 @@
   position: fixed;
   top: 5rem;
   bottom: 0;
-  /* background-color: white; */
 }
 
 .left_column {
@@ -34,28 +33,6 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-}
-
-.card {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  background-color:#ffffff;
-  padding: 1rem;
-  border-radius: 12px;
-}
-
-.h3 {
-  cursor: pointer;
-}
-
-.h3:hover {
- text-decoration: underline;
-}
-
-.img {
-  max-width: 100%;
-  cursor: pointer;
 }
 
 /* Mobile */

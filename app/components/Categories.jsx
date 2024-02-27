@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default async function Categories() {
 
-    const res = await fetch(`${api.url}/api/categories`);
+    const res = await fetch(`${api.url}/categories`);
     const categories = await res.json();
 
   return (
