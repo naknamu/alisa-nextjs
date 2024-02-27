@@ -5,7 +5,7 @@ import Link from "next/link";
 async function getImageDetail(slug) {
     const res = await fetch("http://localhost:3000/api/images/" + slug, {
       next: {
-        revalidate: 0,
+        revalidate: 60,
       }
     });
   
@@ -26,7 +26,10 @@ export default async function ImageDetail({ params }) {
                     <h3>{image.uploader.username}</h3>
                 </Link>
                 <div>{image.caption}</div>
-                <div>{image.prompt}</div>
+                <div className={style.prompt}>
+                    <b>Prompt:</b>
+                    <p>{image.prompt}</p>
+                </div>
                 <div className={style.category}>
                     {image.category.map((category) => (
                         <p key={category._id}>{category.name}</p>
