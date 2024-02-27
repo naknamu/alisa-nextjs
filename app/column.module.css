@@ -9,6 +9,12 @@
     position: fixed;
     top: 5rem;
     bottom: 0;
+    overflow: hidden;
+  }
+
+  .left_column:hover, 
+  .right_column:hover {
+    overflow-y: scroll;
   }
   
   .left_column {
@@ -25,7 +31,6 @@
   }
   
   .column {
-    /* border: 1px solid #ccc; */
     padding: 1rem;
   }
   

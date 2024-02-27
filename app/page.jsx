@@ -2,6 +2,7 @@ import api from "@/config";
 import Categories from "./components/Categories";
 import style from "./column.module.css";
 import ImageCards from "./components/ImageCards";
+import LatestUpload from "./components/LatestUpload";
 
 // fetch images from the API
 async function getImages() {
@@ -32,7 +33,7 @@ export default async function Home() {
       </div>
       <div className={style.right_column}>
         <div className={style.column}>
-            Column 2
+            <LatestUpload />
         </div>
       </div>
     </main>

@@ -13,13 +13,6 @@ export default async function Categories() {
       <div className={style.container}>
           <b>Categories</b>
           <CategoryBtn categories={categories} />
-          {/* <div className={style.categories}>
-              {categories.map((category) => 
-                <button key={category._id}>
-                  <Link href={`/categories/${category.slug}`}>{category.name}</Link>
-                </button>
-              )}
-          </div> */}
       </div>
     </div>
   )

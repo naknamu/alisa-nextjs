@@ -58,3 +58,12 @@ textarea:focus {
 .link:hover {
   text-decoration: underline;
 }
+
+/** REUSED COMPONENT **/
+.btn_primary {
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 16px;
+  padding: 6px 8px;
+  cursor: pointer;
+}
