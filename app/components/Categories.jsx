@@ -1,9 +1,10 @@
 import api from "@/config"
 import style from "./Categories.module.css"
+import Link from "next/link";
 
 export default async function Categories() {
 
-    const res = await fetch(`${api.url}/api/categories`)
+    const res = await fetch(`${api.url}/api/categories`);
     const categories = await res.json();
 
   return (
@@ -12,7 +13,9 @@ export default async function Categories() {
           <b>Categories</b>
           <div className={style.categories}>
               {categories.map((category) => 
-                <p key={category._id}>{category.name}</p>
+                <button key={category._id}>
+                  <Link href={`/categories/${category.slug}`}>{category.name}</Link>
+                </button>
               )}
           </div>
       </div>
