@@ -8,7 +8,7 @@ async function getImages() {
 
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/images`, {
     next: {
-      revalidate: 60 * 15,
+      revalidate: 60,
     },
   });
 

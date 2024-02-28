@@ -7,7 +7,7 @@ import DateUploaded from "@/app/components/DateUploaded";
 async function getImageDetail(slug) {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/images/` + slug, {
       next: {
-        revalidate: 60,
+        revalidate: 0,
       }
     });
   
@@ -21,7 +21,7 @@ export default async function ImageDetail({ params }) {
     return (
         <div className={style.container}>
             <div className={style.image_wrap}>
-             <img src={`${image.source}`} alt={`${image.slug}`} className={style.image} />
+             <img src={`${image.source}`} alt={`${image.slug}`} />
             </div>
             <div className={style.detail_wrap}>
                 <div className={style.header}>
@@ -38,7 +38,10 @@ export default async function ImageDetail({ params }) {
                     <b>Prompt:</b>
                     <p>{image.prompt}</p>
                 </div>
-                <CategoryBtn categories={image.category} />
+                <div className={style.category}>
+                    <b>Category:</b>
+                    <CategoryBtn categories={image.category} />
+                </div>
             </div>
         </div>
     )

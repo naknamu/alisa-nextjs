@@ -127,8 +127,8 @@ export default function Upload({ params }) {
     });
 
     if (res.status === 200) {
+      router.push(`/uploader/${params.slug}`);
       router.refresh();
-      router.push("/");
     }
   };
 
