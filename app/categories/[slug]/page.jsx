@@ -6,7 +6,7 @@ import ImageCards from "@/app/components/ImageCards";
 async function getImagesByCategory(slug) {
     const res = await fetch("http://localhost:3000/api/images/", {
       next: {
-        revalidate: 10,
+        revalidate: 60 * 15,
       }
     });
   
@@ -22,7 +22,10 @@ async function getImagesByCategory(slug) {
 
 export default async function Category({ params }) {
 
-    const images = await getImagesByCategory(params.slug);
+  const images = await getImagesByCategory(params.slug);
+
+  // Convert slug to category name
+  const title = params.slug.replace(/-/g, ' ').toUpperCase();;
 
   return (
     <main className={style.main}>
@@ -33,6 +36,7 @@ export default async function Category({ params }) {
       </div>
       <div className={style.middle_column}>
         <div className={`${style.middle}`}>
+            <h2>{title}</h2>
             <ImageCards images={images} />
         </div>
       </div>

@@ -1,16 +1,21 @@
-import React from 'react';
-import api from '@/config';
-import style from "./LatestUpload.module.css"
+import React from "react";
+import api from "@/config";
+import style from "./LatestUpload.module.css";
+import Link from "next/link";
 
 async function getLatestUpload() {
-    const res = await fetch(`${api.url}/images`);
-    const data = await res.json();
+  const res = await fetch(`${api.url}/images`, {
+    next: {
+      revalidate: 0,
+    },
+  });
 
-    return data;
+  const data = await res.json();
+
+  return data;
 }
 
 export default async function LatestUpload() {
-
   const latest = await getLatestUpload();
 
   // Return only five latest images uploaded
@@ -18,16 +23,20 @@ export default async function LatestUpload() {
 
   return (
     <div className={style.container}>
-        <div className={style.content}>
-          <h3>Latest Upload</h3>
-          {limitLatest.map((image) => (
-            <button key={image._id} className="btn_primary">
-              <div>{image.uploader.username}</div>
+      <div className={style.content}>
+        <h3>Latest Upload</h3>
+        {limitLatest.map((image) => (
+          <div key={image._id} className={style.wrap}>
+            <Link href={`/uploader/${image.uploader.slug}`} className="link">
+              <b>{image.uploader.username}</b>
+            </Link>
+            <Link href={`/images/${image.slug}`} className="link">
               <p>{image.caption}</p>
-            </button>
-          ))}
-        </div>
-
+            </Link>
+            
+          </div>
+        ))}
+      </div>
     </div>
-  )
+  );
 }
