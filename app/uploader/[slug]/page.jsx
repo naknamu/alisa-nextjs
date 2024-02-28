@@ -1,9 +1,12 @@
 import ImageCards from "@/app/components/ImageCards";
-import style from "@/app/column.module.css"
+import style from "@/app/column.module.css";
+import styles from "./page.module.css"
+import Link from "next/link";
+import LatestUpload from "@/app/components/LatestUpload";
 
 // fetch uploader details from the API
 async function getUploader(slug) {
-  const res = await fetch("http://localhost:3000/api/uploaders/" + slug, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/uploaders/` + slug, {
     next: {
       revalidate: 0,
     },
@@ -14,7 +17,7 @@ async function getUploader(slug) {
 
 // fetch images uploaded by the uploader
 async function getUploaderImages(slug) {
-  const res = await fetch("http://localhost:3000/api/images/", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/images/`, {
     next: {
       revalidate: 0,
     },
@@ -37,8 +40,13 @@ export default async function UploaderDetails({ params }) {
     <main className={style.main}>
       <div className={style.left_column}>
         <div className={style.column}>
-          <h3>{uploader.username}</h3>
-          <p>{uploader.email}</p>
+          <div className={styles.uploader_details}>
+            <h3>{uploader.username}</h3>
+            <p>{uploader.email}</p>
+            <Link href={`/uploader/${uploader.slug}/upload`} className="btn_primary">
+              <b>Upload Image</b>
+            </Link>
+          </div>
         </div>
       </div>
       <div className={style.middle_column}>
@@ -47,7 +55,9 @@ export default async function UploaderDetails({ params }) {
         </div>
       </div>
       <div className={style.right_column}>
-        <div className={style.column}>Column 2</div>
+        <div className={style.column}>
+          <LatestUpload />
+        </div>
       </div>
     </main>
   );

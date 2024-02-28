@@ -1,6 +1,7 @@
 import Categories from "@/app/components/Categories";
 import style from "@/app/column.module.css";
 import ImageCards from "@/app/components/ImageCards";
+import LatestUpload from "@/app/components/LatestUpload";
 
 // fetch images uploaded by category
 async function getImagesByCategory(slug) {
@@ -42,7 +43,7 @@ export default async function Category({ params }) {
       </div>
       <div className={style.right_column}>
         <div className={style.column}>
-            Right Column
+            <LatestUpload />
         </div>
       </div>
     </main>

@@ -6,6 +6,8 @@
     padding: 1rem;
     border-radius: 12px;
     background-color: white;
+    width: 500px;
+    margin: 0 auto;
 }
 
 .form > div > * {

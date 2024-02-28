@@ -67,3 +67,14 @@ textarea:focus {
   padding: 6px 8px;
   cursor: pointer;
 }
+
+.btn_primary:hover {
+  border: 1px solid purple;
+  background-color: purple;
+  color: white;
+}
+
+.btn_primary:active {
+  background-color: white;
+  border: 1px solid white;
+}

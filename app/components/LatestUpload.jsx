@@ -1,10 +1,9 @@
 import React from "react";
-import api from "@/config";
 import style from "./LatestUpload.module.css";
 import Link from "next/link";
 
 async function getLatestUpload() {
-  const res = await fetch(`${api.url}/images`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/images`, {
     next: {
       revalidate: 0,
     },
@@ -24,7 +23,7 @@ export default async function LatestUpload() {
   return (
     <div className={style.container}>
       <div className={style.content}>
-        <h3>Latest Upload</h3>
+        <h3>Latest Uploads</h3>
         {limitLatest.map((image) => (
           <div key={image._id} className={style.wrap}>
             <Link href={`/uploader/${image.uploader.slug}`} className="link">

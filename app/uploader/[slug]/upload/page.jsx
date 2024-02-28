@@ -4,7 +4,7 @@ import ImageUpload from "@/app/components/ImageUpload";
 import style from "./page.module.css";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-const _ = require('lodash');
+const _ = require("lodash");
 
 export default function Upload({ params }) {
   const router = useRouter();
@@ -56,8 +56,9 @@ export default function Upload({ params }) {
   };
 
   useEffect(() => {
+
     const getCategories = async () => {
-      const res = await fetch("http://localhost:3000/api/categories/");
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories/`);
 
       const data = await res.json();
 
@@ -66,16 +67,16 @@ export default function Upload({ params }) {
 
     // fetch uploader details from the API
     const getUploader = async (slug) => {
-      const res = await fetch("http://localhost:3000/api/uploaders/" + slug, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/uploaders/` + slug, {
         next: {
           revalidate: 0,
-        }
+        },
       });
 
       const data = await res.json();
 
-      setUploader(data._id)
-    }
+      setUploader(data._id);
+    };
 
     getCategories();
     getUploader(params.slug);
@@ -117,13 +118,13 @@ export default function Upload({ params }) {
 
     console.log(image);
 
-    const res = await fetch("http://localhost:3000/api/image/create", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/image/create`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(image)
-    })
+      body: JSON.stringify(image),
+    });
 
     if (res.status === 200) {
       router.refresh();
