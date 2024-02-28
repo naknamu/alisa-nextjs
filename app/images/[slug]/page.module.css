@@ -21,6 +21,12 @@
     gap: 2rem;
 }
 
+.header {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
 .prompt {
     display: flex;
     flex-direction: column;

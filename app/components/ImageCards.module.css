@@ -25,4 +25,20 @@
     max-width: 100%;
     cursor: pointer;
 }
+
+.header {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.username {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.date {
+    font-size: 14px;
+    font-weight: 400;
+}
   

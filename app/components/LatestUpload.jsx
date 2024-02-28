@@ -23,7 +23,7 @@ export default async function LatestUpload() {
   return (
     <div className={style.container}>
       <div className={style.content}>
-        <h3>Latest Uploads</h3>
+        <b>Latest Uploads</b>
         {limitLatest.map((image) => (
           <div key={image._id} className={style.wrap}>
             <Link href={`/uploader/${image.uploader.slug}`} className="link">

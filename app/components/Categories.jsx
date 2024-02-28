@@ -9,7 +9,7 @@ export default async function Categories() {
   return (
     <div>
       <div className={style.container}>
-          <h3>Categories</h3>
+          <b>Categories</b>
           <CategoryBtn categories={categories} />
       </div>
     </div>
