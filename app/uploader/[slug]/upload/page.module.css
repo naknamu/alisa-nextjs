@@ -34,7 +34,7 @@
 .button {
     padding: 12px 18px;
     border-radius: 12px;
-    background-color: purple;
+    background-color: var(--accent);
     color: white;
     width: 35%;
     align-self: center;

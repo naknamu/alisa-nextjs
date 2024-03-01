@@ -15,8 +15,8 @@
 }
 
 .categories > button:hover {
-    border: 1px solid purple;
-    background-color: purple;
+    border: 1px solid var(--accent);
+    background-color: var(--accent);
     color: white;
 }
 
