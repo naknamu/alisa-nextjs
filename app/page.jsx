@@ -2,6 +2,10 @@ import CategoryBtn from "./components/CategoryBtn";
 import style from "./column.module.css";
 import ImageCards from "./components/ImageCards";
 import LatestUpload from "./components/LatestUpload";
+import ProfileBtn from "./components/ProfileBtn";
+
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 // fetch images from the API
 async function getImages() {
@@ -27,10 +31,14 @@ export default async function Home() {
   const images = await getImages();
   const categories = await getCategories();
 
+  const session = await getServerSession(authOptions);
+  const uploaderName = session?.user?.name;
+
   return (
     <main className={style.main}>
       <div className={style.left_column}>
         <div className={style.column}>
+          <ProfileBtn uploaderName={uploaderName} />
           <CategoryBtn categories={categories} />
         </div>
       </div>

@@ -43,7 +43,7 @@ export default async function UploaderDetails({ params }) {
   const uploaderImages = await getUploaderImages(params.slug);
 
   const session = await getServerSession(authOptions);
-  console.log(session?.user?.email);
+  console.log(session);
 
   return (
     <main className={style.main}>
@@ -52,8 +52,7 @@ export default async function UploaderDetails({ params }) {
           <div className={styles.uploader_details}>
             <h3>{uploader.username}</h3>
             <p>{uploader.email}</p>
-            {((session?.user?.name === uploader.username) ||
-            (session?.user?.name === uploader.email)) 
+            {(session?.user?.email === uploader.email)
             && (
               <Link
                 href={`/uploader/${uploader.slug}/upload`}
@@ -67,7 +66,8 @@ export default async function UploaderDetails({ params }) {
       </div>
       <div className={style.middle_column}>
         <div className={`${style.middle}`}>
-          <ImageCards images={uploaderImages} />
+        {uploaderImages && <ImageCards images={uploaderImages} />}
+        {uploaderImages.length === 0 && <span className={styles.empty}>No images uploaded yet. 😢</span>}
         </div>
       </div>
       <div className={style.right_column}>
