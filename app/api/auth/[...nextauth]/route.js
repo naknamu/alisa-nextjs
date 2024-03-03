@@ -36,8 +36,8 @@ export const authOptions = {
           if (res.status === 200) {
             const data = await res.json();
             return {
-              name: "John Doe",
-              email: "john@gmail.com",
+              name: `${data.emailOrUsername}`,
+              email: `${data.emailOrUsername}`,
             }
           } else {
             throw new Error("Invalid credentials") ;

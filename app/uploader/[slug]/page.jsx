@@ -1,16 +1,22 @@
 import ImageCards from "@/app/components/ImageCards";
 import style from "@/app/column.module.css";
-import styles from "./page.module.css"
+import styles from "./page.module.css";
 import Link from "next/link";
 import LatestUpload from "@/app/components/LatestUpload";
 
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+
 // fetch uploader details from the API
 async function getUploader(slug) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/uploaders/` + slug, {
-    next: {
-      revalidate: 0,
-    },
-  });
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/uploaders/` + slug,
+    {
+      next: {
+        revalidate: 0,
+      },
+    }
+  );
 
   return res.json();
 }
@@ -36,6 +42,9 @@ export default async function UploaderDetails({ params }) {
 
   const uploaderImages = await getUploaderImages(params.slug);
 
+  const session = await getServerSession(authOptions);
+  console.log(session?.user?.email);
+
   return (
     <main className={style.main}>
       <div className={style.left_column}>
@@ -43,9 +52,16 @@ export default async function UploaderDetails({ params }) {
           <div className={styles.uploader_details}>
             <h3>{uploader.username}</h3>
             <p>{uploader.email}</p>
-            <Link href={`/uploader/${uploader.slug}/upload`} className="btn_primary">
-              <b>Upload Image</b>
-            </Link>
+            {((session?.user?.name === uploader.username) ||
+            (session?.user?.name === uploader.email)) 
+            && (
+              <Link
+                href={`/uploader/${uploader.slug}/upload`}
+                className="btn_primary"
+              >
+                <b>Upload Image</b>
+              </Link>
+            )}
           </div>
         </div>
       </div>
