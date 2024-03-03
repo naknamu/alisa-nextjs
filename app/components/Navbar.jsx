@@ -4,19 +4,20 @@ import Link from "next/link";
 import style from "./Navbar.module.css";
 import { signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
-import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 export default function Navbar() {
-  const { status, data } = useSession();
+  const { data } = useSession();
   const router = useRouter();
 
-  useEffect(() => {
-    if (status === "unauthenticated") {
-      router.push("/login");
-      router.refresh();
-    }
-  }, [status]);
+  function logout() {
+    signOut({
+      redirect: false,
+    });
+
+    router.push("/login");
+    router.refresh();
+  }
 
   return (
     <nav className={style.nav}>
@@ -29,14 +30,7 @@ export default function Navbar() {
         </Link>
       )}
       {data && (
-        <button
-          onClick={() =>
-            signOut({
-              redirect: false,
-            })
-          }
-          className="btn_primary"
-        >
+        <button onClick={() => logout()} className="btn_primary">
           <b>Log out</b>
         </button>
       )}

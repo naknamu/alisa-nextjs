@@ -1,5 +1,5 @@
 import CategoryBtn from "@/app/components/CategoryBtn";
-import style from "./page.module.css"
+import style from "./page.module.css";
 import Link from "next/link";
 import DateUploaded from "@/app/components/DateUploaded";
 
@@ -38,10 +38,7 @@ export default async function ImageDetail({ params }) {
                     <b>Prompt:</b>
                     <p>{image.prompt}</p>
                 </div>
-                <div className={style.category}>
-                    <b>Category:</b>
-                    <CategoryBtn categories={image.category} />
-                </div>
+                <CategoryBtn categories={image.category} className={style.override}/>
             </div>
         </div>
     )

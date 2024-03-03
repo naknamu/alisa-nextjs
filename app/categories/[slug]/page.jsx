@@ -1,5 +1,6 @@
-import Categories from "@/app/components/Categories";
+import CategoryBtn from "@/app/components/CategoryBtn";
 import style from "@/app/column.module.css";
+import styles from "./page.module.css"
 import ImageCards from "@/app/components/ImageCards";
 import LatestUpload from "@/app/components/LatestUpload";
 
@@ -21,9 +22,17 @@ async function getImagesByCategory(slug) {
     return images;
 }
 
+// fetch categories from API
+async function getCategories() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories`);
+
+  return res.json();
+}
+
 export default async function Category({ params }) {
 
   const images = await getImagesByCategory(params.slug);
+  const categories = await getCategories();
 
   // Convert slug to category name
   const title = params.slug.replace(/-/g, ' ').toUpperCase();;
@@ -32,13 +41,14 @@ export default async function Category({ params }) {
     <main className={style.main}>
       <div className={style.left_column}>
         <div className={style.column}>
-          <Categories />
+          <CategoryBtn categories={categories} />
         </div>
       </div>
       <div className={style.middle_column}>
         <div className={`${style.middle}`}>
             <h2>{title}</h2>
-            <ImageCards images={images} />
+            {images && <ImageCards images={images} />}
+            {images.length === 0 && <span className={styles.empty}>No images uploaded yet. 😢</span>}
         </div>
       </div>
       <div className={style.right_column}>
