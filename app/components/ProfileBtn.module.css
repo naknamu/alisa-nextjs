@@ -1,0 +1,12 @@
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 8px;
+    padding: 8px 5px;
+}
+
+.profile:hover {
+    background-image: linear-gradient(rgb(0 0 0/40%) 0 0);
+    color: white;
+}

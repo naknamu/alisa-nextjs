@@ -38,7 +38,7 @@ export default async function Home() {
     <main className={style.main}>
       <div className={style.left_column}>
         <div className={style.column}>
-          <ProfileBtn uploaderName={uploaderName} />
+          {uploaderName && <ProfileBtn uploaderName={uploaderName} />}
           <CategoryBtn categories={categories} />
         </div>
       </div>

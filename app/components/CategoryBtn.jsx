@@ -7,9 +7,9 @@ export default function CategoryBtn({ categories }) {
       <b>Categories</b>
       <div className={style.categorybtn}>
         {categories.map((category) => 
-          <button key={category._id} className="btn_primary">
-            <Link href={`/categories/${category.slug}`}>{category.name}</Link>
-          </button>
+          <div key={category._id}>
+            <Link href={`/categories/${category.slug}`} className={style.category}>{category.name}</Link>
+          </div>
         )}
       </div>
 

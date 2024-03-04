@@ -3,6 +3,10 @@ import style from "@/app/column.module.css";
 import styles from "./page.module.css"
 import ImageCards from "@/app/components/ImageCards";
 import LatestUpload from "@/app/components/LatestUpload";
+import ProfileBtn from "@/app/components/ProfileBtn";
+
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 // fetch images uploaded by category
 async function getImagesByCategory(slug) {
@@ -37,10 +41,14 @@ export default async function Category({ params }) {
   // Convert slug to category name
   const title = params.slug.replace(/-/g, ' ').toUpperCase();;
 
+  const session = await getServerSession(authOptions);
+  const uploaderName = session?.user?.name;
+
   return (
     <main className={style.main}>
       <div className={style.left_column}>
         <div className={style.column}>
+          <ProfileBtn uploaderName={uploaderName} />
           <CategoryBtn categories={categories} />
         </div>
       </div>
