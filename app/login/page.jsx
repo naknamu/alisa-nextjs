@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 export default function Login() {
 
   const [uploaderInfo, setUploaderInfo] = useState({ email: "", password: "" });
+  const [isError, setIsError] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (e) => {
@@ -24,8 +25,10 @@ export default function Login() {
       console.log(res);
       router.push("/");
       router.refresh();
+      setIsError(false);
     } else {
       console.log(res.error);
+      setIsError(true);
     }
 
   };
@@ -72,6 +75,8 @@ export default function Login() {
                 }
               />
             </div>
+
+            {isError && <span className={style.error}>Invalid credentials. Please try again...</span>}
 
             <button type="submit" className={style.button}>Log in</button>
           </form>
