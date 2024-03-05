@@ -15,6 +15,16 @@ export default function Signup() {
   const [isError, setIsError] = useState(false);
   const router = useRouter();
 
+  const [toggle, setToggle] = useState(false);
+
+  const handleToggle = () => {
+    if (toggle) {
+      setToggle(false);
+    } else {
+      setToggle(true)
+    }
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -103,17 +113,23 @@ export default function Signup() {
             </div>
             <div>
               <label htmlFor="password">Password</label>
-              <input
-                required
-                className={style.input}
-                type="password"
-                name="password"
-                id="password"
-                value={uploaderInfo.password}
-                onChange={({ target }) =>
-                  setUploaderInfo({ ...uploaderInfo, password: target.value })
-                }
-              />
+              <div className={style.password_wrapper}>
+                <div className={style.password_eye} onClick={() => handleToggle()}>
+                  {toggle && <span className="material-symbols-outlined">visibility_off</span>}
+                  {!toggle && <span className="material-symbols-outlined">visibility</span>}
+                </div>
+                <input
+                  required
+                  className={style.input}
+                  type={toggle ? `text` : `password`}
+                  name="password"
+                  id="password"
+                  value={uploaderInfo.password}
+                  onChange={({ target }) =>
+                    setUploaderInfo({ ...uploaderInfo, password: target.value })
+                  }
+                />
+              </div>
             </div>
 
             {isError && (
