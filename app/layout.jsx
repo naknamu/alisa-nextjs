@@ -11,8 +11,9 @@ import Navbar from './components/Navbar'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Alisa',
-  description: 'AI Images Sharing Platform',
+  title: 'Alisa - AI Pictures Sharing Platform',
+  description: 'Browse, Share and Upload AI Images',
+  metadataBase: new URL('https://alisa.pics'),
 }
 
 export default async function RootLayout({ children }) {

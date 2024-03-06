@@ -1,7 +1,26 @@
-import CategoryBtn from "@/app/components/CategoryBtn";
 import style from "./page.module.css";
 import Link from "next/link";
 import DateUploaded from "@/app/components/DateUploaded";
+
+export async function generateMetadata({ params, searchParams }, parent) {
+  // read route params
+  const slug = params.slug;
+
+  // fetch data
+  const image = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/images/` + slug
+  ).then((res) => res.json());
+
+  // optionally access and extend (rather than replace) parent metadata
+  const previousImages = (await parent).openGraph?.images || [];
+
+  return {
+    title: `Alisa | ${image.caption}`,
+    openGraph: {
+      images: [`${image.source}`, ...previousImages],
+    },
+  };
+}
 
 // fetch image detail from the API
 async function getImageDetail(slug) {
