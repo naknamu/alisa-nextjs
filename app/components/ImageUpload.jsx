@@ -27,7 +27,7 @@ export default function ImageUpload({ previewFile, setPreviewFile}) {
     <div>
       <div className={style.preview}>
         {previewFile && (
-          <img style={{ width: "300px" }} src={previewFile.base64} />
+          <img style={{ width: "300px" }} src={previewFile.base64} alt="image preview" />
         )}
       </div>
       <input
