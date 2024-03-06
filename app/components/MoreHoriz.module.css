@@ -1,0 +1,9 @@
+.container {
+    cursor: pointer;
+    position: relative;
+}
+  
+.container:hover {
+    background-image: linear-gradient(rgb(0 0 0/30%) 0 0);
+    border-radius: 50%;
+}

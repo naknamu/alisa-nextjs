@@ -29,6 +29,12 @@
 .header {
   display: flex;
   gap: 8px;
+  justify-content: space-between;
+}
+
+.left_header {
+  display: flex;
+  gap: 8px;
   align-items: center;
 }
 
