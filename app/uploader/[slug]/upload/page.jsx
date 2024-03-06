@@ -173,7 +173,7 @@ export default function Upload({ params }) {
           />
         </div>
 
-        <label className={style.label}>Chooose image category:</label>
+        <b>Chooose image category:</b>
         {categories?.map((category) => (
           <div key={category._id} className={style.checkbox}>
             <input
