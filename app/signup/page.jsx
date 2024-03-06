@@ -21,9 +21,9 @@ export default function Signup() {
     if (toggle) {
       setToggle(false);
     } else {
-      setToggle(true)
+      setToggle(true);
     }
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,7 +42,7 @@ export default function Signup() {
         headers: {
           "Content-Type": "application/json",
         },
-      }
+      },
     );
 
     const data = await res.json();
@@ -114,9 +114,20 @@ export default function Signup() {
             <div>
               <label htmlFor="password">Password</label>
               <div className={style.password_wrapper}>
-                <div className={style.password_eye} onClick={() => handleToggle()}>
-                  {toggle && <span className="material-symbols-outlined">visibility_off</span>}
-                  {!toggle && <span className="material-symbols-outlined">visibility</span>}
+                <div
+                  className={style.password_eye}
+                  onClick={() => handleToggle()}
+                >
+                  {toggle && (
+                    <span className="material-symbols-outlined">
+                      visibility_off
+                    </span>
+                  )}
+                  {!toggle && (
+                    <span className="material-symbols-outlined">
+                      visibility
+                    </span>
+                  )}
                 </div>
                 <input
                   required

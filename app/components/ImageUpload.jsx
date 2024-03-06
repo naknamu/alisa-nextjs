@@ -1,7 +1,6 @@
-import style from "./ImageUpload.module.css"
+import style from "./ImageUpload.module.css";
 
-export default function ImageUpload({ previewFile, setPreviewFile}) {
-
+export default function ImageUpload({ previewFile, setPreviewFile }) {
   const handleChange = (e) => {
     const files = e.target.files;
     const file = files[files.length - 1];
@@ -27,7 +26,11 @@ export default function ImageUpload({ previewFile, setPreviewFile}) {
     <div>
       <div className={style.preview}>
         {previewFile && (
-          <img style={{ width: "300px" }} src={previewFile.base64} alt="image preview" />
+          <img
+            style={{ width: "300px" }}
+            src={previewFile.base64}
+            alt="image preview"
+          />
         )}
       </div>
       <input

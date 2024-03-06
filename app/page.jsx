@@ -9,7 +9,6 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 // fetch images from the API
 async function getImages() {
-
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/images`, {
     next: {
       revalidate: 60,
@@ -25,7 +24,6 @@ async function getCategories() {
 
   return res.json();
 }
-
 
 export default async function Home() {
   const images = await getImages();
@@ -49,7 +47,7 @@ export default async function Home() {
       </div>
       <div className={style.right_column}>
         <div className={style.column}>
-            <LatestUpload />
+          <LatestUpload />
         </div>
       </div>
     </main>

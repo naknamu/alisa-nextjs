@@ -1,55 +1,55 @@
 .form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    border: 1px solid #e2e6e9;
-    padding: 1rem;
-    border-radius: 12px;
-    background-color: white;
-    width: 500px;
-    margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border: 1px solid #e2e6e9;
+  padding: 1rem;
+  border-radius: 12px;
+  background-color: white;
+  width: 500px;
+  margin: 0 auto;
 }
 
 .form > div > * {
-    margin-block-end: 1rem;
+  margin-block-end: 1rem;
 }
 
 .label {
-    font-weight: 700;
+  font-weight: 700;
 }
 
 .input,
 .textarea {
-    background: #f0f2f5;
-    padding: 10px;
-    width: 100%;
-    border-radius: 12px;
+  background: #f0f2f5;
+  padding: 10px;
+  width: 100%;
+  border-radius: 12px;
 }
 
 .checkbox {
-    display: flex;
-    gap: 1rem;
+  display: flex;
+  gap: 1rem;
 }
 
 .button {
-    padding: 12px 18px;
-    border-radius: 12px;
-    background-color: var(--accent);
-    color: white;
-    width: 35%;
-    align-self: center;
-    font-weight: 700;
+  padding: 12px 18px;
+  border-radius: 12px;
+  background-color: var(--accent);
+  color: white;
+  width: 35%;
+  align-self: center;
+  font-weight: 700;
 }
 
 .button:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .button:active {
-    transform: scale(1);
+  transform: scale(1);
 }
 
 .button:disabled {
-    background: gray;
-    transform: scale(1);
+  background: gray;
+  transform: scale(1);
 }

@@ -8,7 +8,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
 
   // fetch data
   const image = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/images/` + slug
+    `${process.env.NEXT_PUBLIC_API_URL}/images/` + slug,
   ).then((res) => res.json());
 
   // optionally access and extend (rather than replace) parent metadata

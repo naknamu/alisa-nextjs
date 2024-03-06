@@ -1,14 +1,14 @@
 .nav {
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
-    border-bottom: 1px solid #e2e6e9;
-    background-color: white;
-    position: fixed;
-    z-index: 1;
-    width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid #e2e6e9;
+  background-color: white;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
 }
 
 .logo {
-    color: var(--accent);
+  color: var(--accent);
 }

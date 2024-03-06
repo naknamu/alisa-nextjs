@@ -6,13 +6,17 @@ export default function CategoryBtn({ categories }) {
     <div className={style.container}>
       {/* <b>Categories</b> */}
       <div className={style.categorybtn}>
-        {categories.map((category) => 
+        {categories.map((category) => (
           <div key={category._id}>
-            <Link href={`/categories/${category.slug}`} className={style.category}><b>{category.name}</b></Link>
+            <Link
+              href={`/categories/${category.slug}`}
+              className={style.category}
+            >
+              <b>{category.name}</b>
+            </Link>
           </div>
-        )}
+        ))}
       </div>
-
     </div>
-  )
+  );
 }

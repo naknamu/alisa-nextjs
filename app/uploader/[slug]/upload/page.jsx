@@ -56,7 +56,6 @@ export default function Upload({ params }) {
   };
 
   useEffect(() => {
-
     const getCategories = async () => {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories/`);
 
@@ -67,11 +66,14 @@ export default function Upload({ params }) {
 
     // fetch uploader details from the API
     const getUploader = async (slug) => {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/uploaders/` + slug, {
-        next: {
-          revalidate: 0,
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/uploaders/` + slug,
+        {
+          next: {
+            revalidate: 0,
+          },
         },
-      });
+      );
 
       const data = await res.json();
 
@@ -95,7 +97,7 @@ export default function Upload({ params }) {
       setChosenCategory((category) => [...category, e.target.value]);
     } else {
       setChosenCategory(
-        chosenCategory.filter((category) => category !== e.target.value)
+        chosenCategory.filter((category) => category !== e.target.value),
       );
     }
   };

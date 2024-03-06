@@ -32,7 +32,6 @@ export default async function LatestUpload() {
             <Link href={`/images/${image.slug}`} className="link">
               <p>{image.caption}</p>
             </Link>
-            
           </div>
         ))}
       </div>

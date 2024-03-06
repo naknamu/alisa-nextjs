@@ -7,7 +7,6 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function Login() {
-
   const [uploaderInfo, setUploaderInfo] = useState({ email: "", password: "" });
   const [isError, setIsError] = useState(false);
   const router = useRouter();
@@ -20,7 +19,7 @@ export default function Login() {
       password: uploaderInfo.password,
       redirect: false,
     });
-  
+
     if (res.status === 200) {
       console.log(res);
       router.push("/");
@@ -30,7 +29,6 @@ export default function Login() {
       console.log(res.error);
       setIsError(true);
     }
-
   };
 
   return (
@@ -76,9 +74,15 @@ export default function Login() {
               />
             </div>
 
-            {isError && <span className={style.error}>Invalid credentials. Please try again...</span>}
+            {isError && (
+              <span className={style.error}>
+                Invalid credentials. Please try again...
+              </span>
+            )}
 
-            <button type="submit" className={style.button}>Log in</button>
+            <button type="submit" className={style.button}>
+              Log in
+            </button>
           </form>
         </div>
       </div>
