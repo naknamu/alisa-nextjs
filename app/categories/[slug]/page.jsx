@@ -10,9 +10,9 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 // fetch images uploaded by category
 async function getImagesByCategory(slug) {
-  const res = await fetch("http://localhost:3000/api/images/", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/images/`, {
     next: {
-      revalidate: 60 * 15,
+      revalidate: 60,
     },
   });
 
