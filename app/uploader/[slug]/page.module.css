@@ -8,3 +8,20 @@
 .empty {
   color: gray;
 }
+
+.uploadbtn {
+  background-color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 16px;
+  padding: 6px 8px;
+  cursor: pointer;
+  color: white;
+}
+
+.uploadbtn:hover {
+  background-image: linear-gradient(rgb(0 0 0/40%) 0 0);
+}
+
+.uploadbtn:active {
+  background-image: linear-gradient(rgb(0 0 0/0%) 0 0);
+}

@@ -55,7 +55,7 @@ export default async function UploaderDetails({ params }) {
             {session?.user?.email === uploader.email && (
               <Link
                 href={`/uploader/${uploader.slug}/upload`}
-                className="btn_primary"
+                className={styles.uploadbtn}
               >
                 <b>Upload Image</b>
               </Link>
