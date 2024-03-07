@@ -1,6 +1,6 @@
-import style from "./ImageUpload.module.css";
+import style from "./ImagePreview.module.css";
 
-export default function ImageUpload({ previewFile, setPreviewFile }) {
+export default function ImagePreview({ previewFile, setPreviewFile }) {
   const handleChange = (e) => {
     const files = e.target.files;
     const file = files[files.length - 1];

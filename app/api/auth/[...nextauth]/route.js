@@ -1,6 +1,7 @@
-// import { authenticate } from "@/services/authService";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { cookies } from 'next/headers'
+import { setCookie } from 'cookies-next';
 
 async function authenticate(emailOrUsername, password) {
   const uploader = {
@@ -15,6 +16,10 @@ async function authenticate(emailOrUsername, password) {
     },
     body: JSON.stringify(uploader),
   });
+
+  const auth_token = res.headers.get('Authorization').split(' ')[1];
+
+  setCookie('auth_token', auth_token, { cookies });
 
   return res;
 }

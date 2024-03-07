@@ -1,10 +1,20 @@
+"use client";
+
 import React from "react";
 import style from "./Panel.module.css";
+import { useRouter } from "next/navigation";
 
-export default function Panel() {
+export default function Panel({ image }) {
+  const router = useRouter();
+
+  const handleEditImage = () => {
+    // CALL UPDATE IMAGE FORM
+    router.push(`/images/${image.slug}/update`)
+  }
+
   return (
     <div className={style.container}>
-      <div className={style.edit}>
+      <div className={style.edit} onClick={handleEditImage}>
         <span className="material-symbols-outlined">edit</span>
         <span>Edit</span>
       </div>

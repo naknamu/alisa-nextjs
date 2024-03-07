@@ -1,6 +1,6 @@
 "use client";
 
-import ImageUpload from "@/app/components/ImageUpload";
+import ImagePreview from "@/app/components/ImagePreview";
 import style from "./page.module.css";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -118,7 +118,7 @@ export default function Upload({ params }) {
       uploader,
     };
 
-    console.log(image);
+    // console.log(image);
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/image/create`, {
       method: "POST",
@@ -138,7 +138,7 @@ export default function Upload({ params }) {
     <main>
       <form className={style.form}>
         <h2>Upload Image</h2>
-        <ImageUpload
+        <ImagePreview
           previewFile={previewFile}
           setPreviewFile={setPreviewFile}
         />

@@ -22,7 +22,7 @@ export default function MoreHoriz({ image }) {
     <div className={style.container}>
         <span className="material-symbols-outlined" onClick={handleMorehoriz}>more_horiz</span>
         {/**Enable edit and delete functionality on uploader's own images **/}
-        {togglePanel && (data?.user?.name === image.uploader.slug) && <Panel />}
+        {togglePanel && (data?.user?.name === image.uploader.slug) && <Panel image={image} />}
     </div>
   )
 }
