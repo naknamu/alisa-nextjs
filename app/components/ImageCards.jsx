@@ -1,38 +1,29 @@
+"use client"
+
 import Link from "next/link";
 import style from "./ImageCards.module.css";
 import DateUploaded from "./DateUploaded";
 import MoreHoriz from "./MoreHoriz";
 
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { useSession } from "next-auth/react";
+import { useIntersectionObserver } from "@uidotdev/usehooks";
 
-// fetch images uploaded by the uploader
-async function getUploaderImages(slug) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/images/`, {
-    next: {
-      revalidate: 0,
-    },
+export default function ImageCards({ images }) {
+
+  const { data } = useSession();
+
+  const [ref, entry] = useIntersectionObserver({
+    threshold: 0,
+    root: null,
+    rootMargin: "0px",
   });
 
-  const data = await res.json();
-
-  // filter images uploaded by the uploader
-  const images = data.filter((image) => slug === image.uploader.slug);
-
-  return images;
-}
-
-export default async function ImageCards({ images }) {
-
-  const session = await getServerSession(authOptions);
-  const uploaderName = session?.user?.name;
-
-  const uploaderImages = await getUploaderImages(uploaderName);
-
   return (
-    <div className={style.container}>
+    <div className={style.container} ref={ref}>
       {images.map((image) => (
         <div key={image._id} className={style.card}>
+                  {entry?.isIntersecting && (
+                    <>
           <div className={style.header}>
             <div className={style.left_header}>
               <Link href={`/uploader/${image.uploader.slug}`} className="link">
@@ -44,13 +35,14 @@ export default async function ImageCards({ images }) {
               </div>
             </div >
             <div className={style.right_header}>
-              {uploaderName && <MoreHoriz image={image}/>}
+              {data.user.name && <MoreHoriz image={image}/>}
             </div>
           </div>
           <h3>{image.caption}</h3>
           <Link href={`/images/${image.slug}`}>
             <img className={style.img} src={image.source} alt={image.caption} />
           </Link>
+          </>)}
         </div>
       ))}
     </div>
