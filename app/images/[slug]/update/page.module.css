@@ -48,14 +48,13 @@
 }
   
 .button:hover {
-    transform: scale(1.1);
+    background-image: linear-gradient(rgb(0 0 0/40%) 0 0);
 }
   
 .button:active {
-    transform: scale(1);
+    background-color: var(--accent);
 }
   
 .button:disabled {
     background: gray;
-    transform: scale(1);
 }
