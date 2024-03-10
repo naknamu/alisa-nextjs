@@ -53,7 +53,7 @@ export default async function Category({ params }) {
       </div>
       <div className={style.middle_column}>
         <div className={`${style.middle}`}>
-          <h2>{title}</h2>
+          <h2 className="title">{title}</h2>
           {images && <ImageCards images={images} />}
           {images.length === 0 && (
             <span className={styles.empty}>No images uploaded yet. 😢</span>

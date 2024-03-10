@@ -81,3 +81,16 @@ textarea:focus {
   background-color: white;
   border: 1px solid white;
 }
+
+.title {
+  padding-left: 8px;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  
+  main {
+    padding-block: 3rem;
+  }
+
+}
