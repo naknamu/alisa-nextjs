@@ -13,7 +13,7 @@
 .category {
   display: flex;
   border-radius: 8px;
-  padding: 8px 5px;
+  padding: 6px 8px;
   text-align: start;
 }
 

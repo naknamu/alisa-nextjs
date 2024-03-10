@@ -58,3 +58,15 @@
 .button:disabled {
     background: gray;
 }
+
+/* Mobile */
+@media (max-width: 700px) {
+  
+    .form {
+        width: inherit;
+    }
+
+    .button {
+        width: inherit;
+    }
+}

@@ -65,7 +65,7 @@ export default async function UploaderDetails({ params }) {
       </div>
       <div className={style.middle_column}>
         <div className={`${style.middle}`}>
-          {session?.user?.email === uploader.email && <h3>My Uploads</h3>}
+          {session?.user?.email === uploader.email && <h3 className="title">My Uploads</h3>}
           {session?.user?.email !== uploader.email && (
             <h3 className="title">{uploader.username}&#39;s Uploads</h3>
           )}

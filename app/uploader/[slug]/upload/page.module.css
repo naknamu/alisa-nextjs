@@ -6,7 +6,7 @@
   padding: 1rem;
   border-radius: 12px;
   background-color: white;
-  width: 500px;
+  max-width: 500px;
   margin: 0 auto;
 }
 
@@ -53,4 +53,12 @@
 .button:disabled {
   background: gray;
   transform: scale(1);
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .button {
+    width: inherit;
+  }
+
 }
