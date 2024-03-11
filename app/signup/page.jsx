@@ -42,7 +42,7 @@ export default function Signup() {
         headers: {
           "Content-Type": "application/json",
         },
-      },
+      }
     );
 
     const data = await res.json();
@@ -148,6 +148,12 @@ export default function Signup() {
                 Error signing up. Please try again...
               </span>
             )}
+
+            <div className={style.agree}>
+              <Link href="/policies/terms-of-services" className="link">
+                By signing up, you agree to our terms of services.
+              </Link>
+            </div>
 
             <button type="submit" className={style.button}>
               Sign up

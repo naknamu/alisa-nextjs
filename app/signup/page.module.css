@@ -78,6 +78,12 @@
   margin-top: 0.5rem;
 }
 
+.agree {
+  color: var(--text-secondary);
+  text-align: center;
+  padding-block-end: 1rem;
+}
+
 /* Mobile */
 @media (max-width: 700px) {
 
