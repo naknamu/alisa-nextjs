@@ -12,7 +12,7 @@ export default async function ImageCards({ images }) {
   const getImageSource = (image) => {
     if (image.source.includes("backblazeb2.com")) {
       const spliSource = image.source.split("v1/")[1];
-      return process.env.IMAGE_SOURCE_CDN + spliSource;
+      return process.env.NEXT_PUBLIC_IMAGE_CDN + spliSource;
     }
     return "";
   };
