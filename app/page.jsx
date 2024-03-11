@@ -3,6 +3,7 @@ import style from "./column.module.css";
 import ImageCards from "./components/ImageCards";
 import LatestUpload from "./components/LatestUpload";
 import ProfileBtn from "./components/ProfileBtn";
+import Footer from "./components/Footer";
 
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
@@ -14,6 +15,8 @@ async function getImages() {
       revalidate: 60,
     },
   });
+
+  // console.log(process.env.NEXT_PUBLIC_API_URL);
 
   return res.json();
 }
@@ -38,6 +41,7 @@ export default async function Home() {
         <div className={style.column}>
           {uploaderName && <ProfileBtn uploaderName={uploaderName} />}
           <CategoryBtn categories={categories} />
+          <Footer />
         </div>
       </div>
       <div className={style.middle_column}>
