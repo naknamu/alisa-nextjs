@@ -36,10 +36,18 @@ async function getImageDetail(slug) {
 export default async function ImageDetail({ params }) {
   const image = await getImageDetail(params.slug);
 
+  const getImageSource = (image) => {
+    if (image.source.includes("backblazeb2.com")) {
+      const spliSource = image.source.split("v1/")[1];
+      return process.env.IMAGE_SOURCE_CDN + spliSource;
+    }
+    return "";
+  };
+
   return (
     <div className={style.container}>
       <div className={style.image_wrap}>
-        <img src={`${image.source}`} alt={`${image.slug}`} />
+        <img src={getImageSource(image)} alt={`${image.slug}`} />
       </div>
       <div className={style.detail_wrap}>
         <div className={style.header}>

@@ -9,6 +9,14 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 export default async function ImageCards({ images }) {
   const session = await getServerSession(authOptions);
 
+  const getImageSource = (image) => {
+    if (image.source.includes("backblazeb2.com")) {
+      const spliSource = image.source.split("v1/")[1];
+      return process.env.IMAGE_SOURCE_CDN + spliSource;
+    }
+    return "";
+  };
+
   return (
     <div className={style.container}>
       {images.map((image) => (
@@ -29,7 +37,11 @@ export default async function ImageCards({ images }) {
           </div>
           <h3>{image.caption}</h3>
           <Link href={`/images/${image.slug}`}>
-            <img className={style.img} src={image.source} alt={image.caption} />
+            <img
+              className={style.img}
+              src={getImageSource(image)}
+              alt={image.caption}
+            />
           </Link>
         </div>
       ))}

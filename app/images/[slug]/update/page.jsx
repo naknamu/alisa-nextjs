@@ -109,7 +109,7 @@ export default function UpdateImage({ params }) {
         {image && (
           <img
             className={style.image}
-            src={`${image.source}`}
+            src={image.source}
             alt={image.caption}
           />
         )}
