@@ -102,6 +102,14 @@ export default function UpdateImage({ params }) {
     } 
   };
 
+  const getImageSource = (image) => {
+    if (image.source.includes("backblazeb2.com")) {
+      const spliSource = image.source.split("v1/")[1];
+      return process.env.NEXT_PUBLIC_IMAGE_CDN + spliSource;
+    }
+    return "";
+  };
+
   return (
     <main>
       <form className={style.form}>
@@ -109,7 +117,7 @@ export default function UpdateImage({ params }) {
         {image && (
           <img
             className={style.image}
-            src={image.source}
+            src={getImageSource(image)}
             alt={image.caption}
           />
         )}
