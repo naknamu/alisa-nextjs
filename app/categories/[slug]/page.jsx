@@ -30,7 +30,7 @@ async function getImagesByCategory(slug) {
 async function getCategories() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories`, {
     next: {
-      revalidate: 60,
+      revalidate: 86400,
     },
   });
 
