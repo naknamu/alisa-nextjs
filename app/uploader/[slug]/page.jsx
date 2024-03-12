@@ -51,7 +51,7 @@ export default async function UploaderDetails({ params }) {
         <div className={style.column}>
           <div className={styles.uploader_details}>
             <h3>{uploader.username}</h3>
-            <p>{uploader.email}</p>
+            {/* <p>{uploader.email}</p> */}
             {session?.user?.email === uploader.email && (
               <Link
                 href={`/uploader/${uploader.slug}/upload`}
