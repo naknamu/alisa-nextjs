@@ -60,7 +60,12 @@ export default async function Category({ params }) {
           <h2 className="title">{title}</h2>
           {images && <ImageCards images={images} />}
           {images.length === 0 && (
-            <span className={styles.empty}>No images uploaded yet. 😢</span>
+            <span className={styles.empty}>
+              No images uploaded yet. 😢
+              <br />
+              <br />
+              Please log in to upload an image. 🥺🙏
+              </span>
           )}
         </div>
       </div>
