@@ -7,6 +7,7 @@ import CategoryBtn from "./CategoryBtn";
 import { useEffect, useState } from "react";
 import LogBtn from "./LogBtn";
 import ProfileBtn from "./ProfileBtn";
+import Footer from "./Footer";
 
 export default function Navbar() {
   const { data } = useSession();
@@ -75,6 +76,7 @@ export default function Navbar() {
               <div>
                 <LogBtn />
               </div>
+              <Footer />
             </div>
           </div>
         </div>
