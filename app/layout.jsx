@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import Provider from "@/app/context/client-provider.jsx";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import NextTopLoader from 'nextjs-toploader';
 
 // components
 import Navbar from "./components/Navbar";
@@ -24,6 +25,7 @@ export default async function RootLayout({ children }) {
       <body className={inter.className}>
         <Provider session={session}>
           <Navbar />
+          <NextTopLoader showSpinner={false}/>
           {children}
         </Provider>
       </body>
