@@ -4,9 +4,17 @@ import styles from "./page.module.css";
 import ImageCards from "@/app/components/ImageCards";
 import LatestUpload from "@/app/components/LatestUpload";
 import ProfileBtn from "@/app/components/ProfileBtn";
-
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import Footer from "@/app/components/Footer";
+
+export async function generateStaticParams() {
+  const categories = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories`).then((res) => res.json())
+ 
+  return categories.map((category) => ({
+    slug: category.slug,
+  }))
+}
 
 // fetch images uploaded by category
 async function getImagesByCategory(slug) {
@@ -30,7 +38,7 @@ async function getImagesByCategory(slug) {
 async function getCategories() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories`, {
     next: {
-      revalidate: 86400,
+      revalidate: 60,
     },
   });
 
@@ -53,6 +61,7 @@ export default async function Category({ params }) {
         <div className={style.column}>
           {uploaderName && <ProfileBtn uploaderName={uploaderName} />}
           <CategoryBtn categories={categories} />
+          <Footer />
         </div>
       </div>
       <div className={style.middle_column}>
