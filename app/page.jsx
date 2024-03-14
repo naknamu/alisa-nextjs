@@ -12,7 +12,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 async function getImages() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/images`, {
     next: {
-      revalidate: 60,
+      revalidate: 0,
     },
   });
 
@@ -23,7 +23,11 @@ async function getImages() {
 
 // fetch categories from API
 async function getCategories() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories`, {
+    next: {
+      revalidate: 60,
+    },
+  });
 
   return res.json();
 }

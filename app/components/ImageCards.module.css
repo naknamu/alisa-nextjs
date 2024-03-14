@@ -53,3 +53,14 @@
   font-size: 14px;
   font-weight: 400;
 }
+
+.footer {
+  position: relative;
+  top: -1rem;
+  margin-block: 1rem;
+}
+
+.share {
+  position: absolute;
+  left: 4rem;
+}

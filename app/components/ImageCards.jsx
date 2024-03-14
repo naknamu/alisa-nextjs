@@ -5,6 +5,7 @@ import MoreHoriz from "./MoreHoriz";
 
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import Love from "./Love";
 
 export default async function ImageCards({ images }) {
   const session = await getServerSession(authOptions);
@@ -43,6 +44,14 @@ export default async function ImageCards({ images }) {
               alt={image.caption}
             />
           </Link>
+          <div className={style.footer}>
+            <div className={style.love}>
+              <Love image={image} />
+            </div>
+            <div className={style.share}>
+              <span className="material-symbols-outlined">share</span>
+            </div>
+          </div>
         </div>
       ))}
     </div>
