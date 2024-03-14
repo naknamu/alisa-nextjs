@@ -19,7 +19,7 @@ async function authenticate(emailOrUsername, password) {
 
   const auth_token = res.headers.get('Authorization').split(' ')[1];
 
-  setCookie('auth_token', auth_token, { cookies });
+  setCookie('auth_token', auth_token, { cookies, maxAge: 43200 });
 
   return res;
 }
@@ -61,7 +61,10 @@ export const authOptions = {
     verifyRequest: "/auth/verify-request", // (used for check email message)
     newUser: "/auth/new-user", // New users will be directed here on first sign in (leave the property out if not of interest)
   },
-  session: { strategy: "jwt" },
+  session: { 
+    strategy: "jwt",
+    maxAge: 43200
+  },
 };
 
 const handler = NextAuth(authOptions);
