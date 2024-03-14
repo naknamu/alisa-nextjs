@@ -46,12 +46,8 @@ export default async function ImageCards({ images }) {
             />
           </Link>
           <div className={style.footer}>
-            <div className={style.love}>
-              <LoveBtn image={image} />
-            </div>
-            <div className={style.share}>
-              <ShareBtn image={image}/>
-            </div>
+            <LoveBtn image={image}/>
+            <ShareBtn image={image}/>
           </div>
         </div>
       ))}

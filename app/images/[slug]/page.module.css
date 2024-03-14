@@ -58,6 +58,11 @@
   gap: 1rem;
 }
 
+.footer {
+  position: relative;
+  margin-block: 1rem;
+}
+
 @media (max-width: 700px) {
   .container {
     display: flex;

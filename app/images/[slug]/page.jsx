@@ -1,6 +1,8 @@
 import style from "./page.module.css";
 import Link from "next/link";
 import DateUploaded from "@/app/components/DateUploaded";
+import LoveBtn from "@/app/components/LoveBtn";
+import ShareBtn from "@/app/components/ShareBtn";
 
 export async function generateMetadata({ params, searchParams }, parent) {
   // read route params
@@ -77,6 +79,11 @@ export default async function ImageDetail({ params }) {
                 </Link>
               </div>
             ))}
+          </div>
+
+          <div className={style.footer}>
+            <LoveBtn image={image}/>
+            <ShareBtn image={image}/>
           </div>
         </div>
       </div>
