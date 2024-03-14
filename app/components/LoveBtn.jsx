@@ -1,24 +1,29 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import style from "./Love.module.css";
-import { incrementLove, removeLove, getUploader } from "@/app/actions";
+import style from "./LoveBtn.module.css";
+import { incrementLove, removeLove } from "@/app/actions";
 import { useSession } from "next-auth/react";
 import { getCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 
-export default function Love({ image }) {
+export default function LoveBtn({ image }) {
   const [isLove, setIsLove] = useState(false);
   const [loveCount, setLoveCount] = useState(0);
-  const { data } = useSession();
+  const session = useSession();
   const auth_token = getCookie("auth_token");
   const router = useRouter();
 
+  let name;
+  if (session?.data?.user) {
+      name = session.data.user.name;
+  }
+
   useEffect(() => {
-    setLoveCount(image.love.length);
+    setLoveCount(image.love?.length);
 
     // Check if uploader loved the image
-    if (image.love.includes(data?.user?.name)) {
+    if (image.love?.includes(name)) {
       setIsLove(true);
     }
   }, []);
@@ -28,13 +33,14 @@ export default function Love({ image }) {
       setLoveCount(loveCount + 1);
       setIsLove(true);
       // POST request to add love
-      await incrementLove(data.user.name, image._id, auth_token);
+      await incrementLove(name, image._id, auth_token);
     } else {
       setLoveCount(loveCount - 1);
       setIsLove(false);
       // POST request to delete love
-      await removeLove(data.user.name, image._id, auth_token);
+      await removeLove(name, image._id, auth_token);
     }
+    router.refresh();
   };
 
   const handleRedirect = () => {
@@ -48,7 +54,7 @@ export default function Love({ image }) {
         className={`material-symbols-outlined ${
           isLove ? style.fill_love_icon : style.love_icon
         }`}
-        onClick={() => {data ? handleLove() : handleRedirect()}}
+        onClick={() => {name ? handleLove() : handleRedirect()}}
       >
         favorite
       </span>

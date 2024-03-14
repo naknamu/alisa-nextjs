@@ -5,6 +5,7 @@ import Provider from "@/app/context/client-provider.jsx";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import NextTopLoader from 'nextjs-toploader';
+import { Toaster } from "react-hot-toast";
 
 // components
 import Navbar from "./components/Navbar";
@@ -26,6 +27,7 @@ export default async function RootLayout({ children }) {
         <Provider session={session}>
           <Navbar />
           <NextTopLoader showSpinner={false}/>
+          <Toaster position="bottom-center" />
           {children}
         </Provider>
       </body>

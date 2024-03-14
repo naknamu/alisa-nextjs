@@ -15,12 +15,7 @@ export async function incrementLove(uploaderslug, imageid, auth_token) {
         body: JSON.stringify(imagelove),
     });
     
-    if (res.status === 200) {
-        console.log("Successfully added love.");
-    } else {
-        console.log("Error!");
-        return null;
-    }
+    return res.json();
 }
 
 export async function removeLove(uploaderslug, imageid, auth_token) {
@@ -37,10 +32,5 @@ export async function removeLove(uploaderslug, imageid, auth_token) {
         body: JSON.stringify(imagelove),
     });
     
-    if (res.status === 200) {
-        console.log("Successfully removed love.");
-    } else {
-        console.log("Error!");
-        return null;
-    }
+    return res.json();
 }

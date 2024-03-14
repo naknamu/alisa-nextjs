@@ -19,7 +19,8 @@
     "next-auth": "^4.24.6",
     "nextjs-toploader": "^1.6.6",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-hot-toast": "^2.4.1"
   },
   "devDependencies": {
     "aws-cdk-lib": "2.124.0",

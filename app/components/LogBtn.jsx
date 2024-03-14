@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { signOut } from "next-auth/react";
+import { deleteCookie } from 'cookies-next';
 
 export default function LogBtn() {
   const { data } = useSession();
@@ -11,6 +12,9 @@ export default function LogBtn() {
     signOut({
       redirect: false,
     });
+
+    // Delete auth cookie
+    deleteCookie('auth_token');
 
     router.push("/login");
     router.refresh();
