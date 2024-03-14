@@ -34,3 +34,9 @@ export async function removeLove(uploaderslug, imageid, auth_token) {
     
     return res.json();
 }
+
+// fetch categories from API
+export async function getCategories() {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories`);
+    return res.json();
+}

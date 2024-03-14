@@ -4,35 +4,28 @@ import Link from "next/link";
 import style from "./Navbar.module.css";
 import { useSession } from "next-auth/react";
 import CategoryBtn from "./CategoryBtn";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import LogBtn from "./LogBtn";
 import ProfileBtn from "./ProfileBtn";
 import Footer from "./Footer";
+import { getCategories } from "@/app/actions.js"
 
 export default function Navbar() {
   const { data } = useSession();
   const [categories, setCategories] = useState(null);
   const [isMenu, setIsMenu] = useState(false);
 
-  const handleMenu = () => {
-    console.log("menu!");
+  const handleMenu = async () => {
+
+    const data = await getCategories();
+    setCategories(data);
+
     if (isMenu) {
       setIsMenu(false);
     } else {
       setIsMenu(true);
     }
   };
-
-  useEffect(() => {
-    // fetch categories from API
-    async function getCategories() {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories`);
-      const data = await res.json();
-      setCategories(data);
-    }
-
-    getCategories();
-  }, []);
 
   return (
     <nav className={style.nav}>
@@ -72,7 +65,7 @@ export default function Navbar() {
                   <b>Upload Image</b>
                 </Link>
               )}
-              <div>{categories && <CategoryBtn categories={categories} />}</div>
+              {categories && <CategoryBtn categories={categories} />}
               <div>
                 <LogBtn />
               </div>
