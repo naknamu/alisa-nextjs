@@ -3,6 +3,7 @@ import Link from "next/link";
 import DateUploaded from "@/app/components/DateUploaded";
 import LoveBtn from "@/app/components/LoveBtn";
 import ShareBtn from "@/app/components/ShareBtn";
+import Image from "next/image";
 
 export async function generateMetadata({ params, searchParams }, parent) {
   // read route params
@@ -10,7 +11,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
 
   // fetch data
   const image = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/images/` + slug,
+    `${process.env.NEXT_PUBLIC_API_URL}/images/` + slug
   ).then((res) => res.json());
 
   // optionally access and extend (rather than replace) parent metadata
@@ -49,7 +50,15 @@ export default async function ImageDetail({ params }) {
   return (
     <div className={style.container}>
       <div className={style.image_wrap}>
-        <img src={getImageSource(image)} alt={`${image.slug}`} />
+        <Image
+          className={style.img}
+          src={getImageSource(image)}
+          alt={image.caption}
+          width={"500"}
+          height={"300"}
+          sizes="100vw"
+          priority={true}
+        />
       </div>
       <div className={style.detail_wrap}>
         <div className={style.header}>
@@ -82,8 +91,8 @@ export default async function ImageDetail({ params }) {
           </div>
 
           <div className={style.footer}>
-            <LoveBtn image={image}/>
-            <ShareBtn image={image}/>
+            <LoveBtn image={image} />
+            <ShareBtn image={image} />
           </div>
         </div>
       </div>

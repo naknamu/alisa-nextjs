@@ -3,8 +3,9 @@
 import style from "./page.module.css";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
-import { getCookie } from 'cookies-next';
+import { getCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function UpdateImage({ params }) {
   const [image, setImage] = useState(null);
@@ -17,7 +18,7 @@ export default function UpdateImage({ params }) {
   const { data } = useSession();
   const router = useRouter();
 
-  const auth_token = getCookie('auth_token');
+  const auth_token = getCookie("auth_token");
 
   useEffect(() => {
     const getImageDetail = async (slug) => {
@@ -74,7 +75,7 @@ export default function UpdateImage({ params }) {
     }
   };
 
-  const handleUpload = async(e) => {
+  const handleUpload = async (e) => {
     e.preventDefault();
     setIsUploading(true);
 
@@ -87,19 +88,22 @@ export default function UpdateImage({ params }) {
       _id: image._id,
     };
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/image/${image._id}/update`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${auth_token}`
-      },
-      body: JSON.stringify(imageDetail),
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/image/${image._id}/update`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${auth_token}`,
+        },
+        body: JSON.stringify(imageDetail),
+      }
+    );
 
     if (res.status === 200) {
       router.push(`/images/${image.slug}`);
       router.refresh();
-    } 
+    }
   };
 
   const getImageSource = (image) => {
@@ -115,10 +119,14 @@ export default function UpdateImage({ params }) {
       <form className={style.form}>
         <h2>Edit Upload</h2>
         {image && (
-          <img
+          <Image
             className={style.image}
             src={getImageSource(image)}
             alt={image.caption}
+            width={"500"}
+            height={"300"}
+            sizes="100vw"
+            priority={true}
           />
         )}
         <div>

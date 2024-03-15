@@ -7,6 +7,7 @@ import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import LoveBtn from "./LoveBtn";
 import ShareBtn from "./ShareBtn";
+import Image from "next/image";
 
 export default async function ImageCards({ images }) {
   const session = await getServerSession(authOptions);
@@ -37,17 +38,21 @@ export default async function ImageCards({ images }) {
               {session && <MoreHoriz image={image} />}
             </div>
           </div>
-          <h3>{image.caption}</h3>
+          <h2 className={style.h2}>{image.caption}</h2>
           <Link href={`/images/${image.slug}`}>
-            <img
+            <Image
               className={style.img}
               src={getImageSource(image)}
               alt={image.caption}
+              width={"500"}
+              height={"300"}
+              sizes="100vw"
+              priority={true}
             />
           </Link>
           <div className={style.footer}>
-            <LoveBtn image={image}/>
-            <ShareBtn image={image}/>
+            <LoveBtn image={image} />
+            <ShareBtn image={image} />
           </div>
         </div>
       ))}

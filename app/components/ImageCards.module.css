@@ -19,16 +19,14 @@
 }
 
 
-.h3 {
-  cursor: pointer;
-}
-
-.h3:hover {
-  text-decoration: underline;
+.h2 {
+  font-size: 1.4rem;
 }
 
 .img {
   max-width: 100%;
+  width: auto;
+  height: auto;
   cursor: pointer;
 }
 
