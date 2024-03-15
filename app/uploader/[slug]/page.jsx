@@ -2,7 +2,7 @@ import ImageCards from "@/app/components/ImageCards";
 import style from "@/app/column.module.css";
 import styles from "./page.module.css";
 import Link from "next/link";
-import LatestUpload from "@/app/components/LatestUpload";
+// import LatestUpload from "@/app/components/LatestUpload";
 
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
@@ -76,11 +76,11 @@ export default async function UploaderDetails({ params }) {
           )}
         </div>
       </div>
-      <div className={style.right_column}>
+      {/* <div className={style.right_column}>
         <div className={style.column}>
           <LatestUpload />
         </div>
-      </div>
+      </div> */}
     </main>
   );
 }

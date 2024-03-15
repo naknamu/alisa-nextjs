@@ -1,4 +1,3 @@
-import React from "react";
 import style from "./LatestUpload.module.css";
 import Link from "next/link";
 

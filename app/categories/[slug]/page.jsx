@@ -2,11 +2,11 @@ import CategoryBtn from "@/app/components/CategoryBtn";
 import style from "@/app/column.module.css";
 import styles from "./page.module.css";
 import ImageCards from "@/app/components/ImageCards";
-import LatestUpload from "@/app/components/LatestUpload";
 import ProfileBtn from "@/app/components/ProfileBtn";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import Footer from "@/app/components/Footer";
+// import LatestUpload from "@/app/components/LatestUpload";
 
 export async function generateStaticParams() {
   const categories = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories`).then((res) => res.json())
@@ -78,11 +78,11 @@ export default async function Category({ params }) {
           )}
         </div>
       </div>
-      <div className={style.right_column}>
+      {/* <div className={style.right_column}>
         <div className={style.column}>
           <LatestUpload />
         </div>
-      </div>
+      </div> */}
     </main>
   );
 }
