@@ -31,7 +31,7 @@ export default function ConfirmDialog({ setIsDialog, image }) {
       <div className={style.container}>
         <b>Are you sure you want to delete this image?</b>
         <span className={style.btngroup}>
-          <button className="btn_primary" onClick={handleDeleteImage}>
+          <button className="btn_primary" onClick={() => handleDeleteImage()}>
             Confirm
           </button>
           <button className="btn_primary" onClick={() => setIsDialog(false)}>

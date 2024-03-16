@@ -38,7 +38,7 @@ export default function Navbar() {
         <LogBtn />
       </div>
 
-      <div className={`icon ${style.menubtn}`} onClick={handleMenu}>
+      <div className={`icon ${style.menubtn}`} onClick={() => handleMenu()}>
         <IoIosMenu />
       </div>
       {isMenu && (

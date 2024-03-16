@@ -24,11 +24,11 @@ export default function Panel({ image }) {
 
   return (
     <div className={style.container}>
-      <div className={style.edit} onClick={handleEditImage}>
+      <div className={style.edit} onClick={() => handleEditImage()}>
         <MdOutlineEdit />
         <span>Edit</span>
       </div>
-      <div className={style.delete} onClick={handleDeleteImage}>
+      <div className={style.delete} onClick={() => handleDeleteImage()}>
         <RiDeleteBin6Line />
         <span>Delete</span>
       </div>
