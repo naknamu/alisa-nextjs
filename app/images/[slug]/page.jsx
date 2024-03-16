@@ -89,11 +89,10 @@ export default async function ImageDetail({ params }) {
               </div>
             ))}
           </div>
-
-          <div className={style.footer}>
+        </div>
+        <div className={style.footer}>
             <LoveBtn image={image} />
             <ShareBtn image={image} />
-          </div>
         </div>
       </div>
     </div>

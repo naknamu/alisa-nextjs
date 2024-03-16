@@ -46,7 +46,7 @@ export default async function ImageCards({ images }) {
               alt={image.caption}
               width={"500"}
               height={"300"}
-              sizes="(min-width: 540px) 468px, 90.91vw"
+              sizes="(max-width: 768px) 468px, 90.91vw, (max-width: 1200px) 100vw, 468px"
               priority={true}
             />
           </Link>
