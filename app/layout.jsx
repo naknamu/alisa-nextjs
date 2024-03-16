@@ -1,5 +1,4 @@
 import "./globals.css";
-import "./globalicon.css";
 import { Inter } from "next/font/google";
 import Provider from "@/app/context/client-provider.jsx";
 import { getServerSession } from "next-auth/next";

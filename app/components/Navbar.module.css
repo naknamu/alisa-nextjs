@@ -13,7 +13,7 @@
   color: var(--accent);
 }
 
-.menu, .menu_overlay, .menu_content {
+.menubtn, .menu_overlay, .menu_content {
   display: none;
 }
 
@@ -27,8 +27,13 @@
     display: none;
   }
 
-  .menu, .menu_overlay, .menu_content {
+  .menubtn, .menu_overlay, .menu_content {
     display: block;
+  }
+
+  .menubtn {
+    font-size: 25px;
+    color: var(--accent);
   }
 
   .menu_overlay {

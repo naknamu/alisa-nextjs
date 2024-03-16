@@ -6,6 +6,9 @@ import { incrementLove, removeLove } from "@/app/actions";
 import { useSession } from "next-auth/react";
 import { getCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
+import { FaRegHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
+import { toast } from "react-hot-toast";
 
 export default function LoveBtn({ image }) {
   const [isLove, setIsLove] = useState(false);
@@ -32,6 +35,7 @@ export default function LoveBtn({ image }) {
     if (!isLove) {
       setLoveCount(loveCount + 1);
       setIsLove(true);
+      toast.success("+1 Love");
       // POST request to add love
       await incrementLove(name, image._id, auth_token);
     } else {
@@ -50,15 +54,10 @@ export default function LoveBtn({ image }) {
 
   return (
     <div className={style.container}>
-      <span
-        className={`material-symbols-outlined ${
-          isLove ? style.fill_love_icon : style.love_icon
-        }`}
-        onClick={() => {name ? handleLove() : handleRedirect()}}
-      >
-        favorite
+      <span className="icon" onClick={() => {name ? handleLove() : handleRedirect()}}>
+        {isLove ? <FaHeart /> : <FaRegHeart />}
       </span>
-      <span>{loveCount}</span>
+      <span className={style.love_count}>{loveCount}</span>
     </div>
   );
 }

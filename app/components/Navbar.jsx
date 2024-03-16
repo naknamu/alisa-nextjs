@@ -9,6 +9,8 @@ import LogBtn from "./LogBtn";
 import ProfileBtn from "./ProfileBtn";
 import Footer from "./Footer";
 import { getCategories } from "@/app/actions.js"
+import { IoIosMenu } from "react-icons/io";
+import { IoMdClose } from "react-icons/io";
 
 export default function Navbar() {
   const { data } = useSession();
@@ -36,8 +38,8 @@ export default function Navbar() {
         <LogBtn />
       </div>
 
-      <div className={style.menu} onClick={handleMenu}>
-        <span className="material-symbols-outlined">menu</span>
+      <div className={`icon ${style.menubtn}`} onClick={handleMenu}>
+        <IoIosMenu />
       </div>
       {isMenu && (
         <div className={style.menu_overlay}>
@@ -46,12 +48,9 @@ export default function Navbar() {
               <div onClick={() => setIsMenu(false)}>
                 {data && <ProfileBtn uploaderName={data.user.name} />}
               </div>
-              <span
-                className="material-symbols-outlined"
-                onClick={() => setIsMenu(false)}
-              >
-                close
-              </span>
+              <div className="icon" onClick={() => setIsMenu(false)}>
+                <IoMdClose />
+              </div>
             </div>
             <div
               className={style.menu_btn_group}

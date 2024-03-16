@@ -2,6 +2,7 @@
 
 import style from "./ShareBtn.module.css";
 import { toast } from "react-hot-toast";
+import { IoShareSocialOutline } from "react-icons/io5";
 
 export default function ShareBtn({ image }) {
   const handleShare = () => {
@@ -13,13 +14,10 @@ export default function ShareBtn({ image }) {
   };
   return (
     <div className={style.container}>
-      <span
-        className={`material-symbols-outlined ${style.share_icon}`}
-        onClick={() => handleShare()}
-      >
-        share
+      <span className="icon" onClick={() => handleShare()}>
+       <IoShareSocialOutline />
       </span>
-      <p>Share</p>
+      <p className={style.share_text}>Share</p>
     </div>
   );
 }

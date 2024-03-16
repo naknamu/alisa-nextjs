@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
+import { IoEyeOutline } from "react-icons/io5";
+import { IoEyeOffOutline } from "react-icons/io5";
 
 export default function Signup() {
   const [uploaderInfo, setUploaderInfo] = useState({
@@ -115,19 +117,11 @@ export default function Signup() {
               <label htmlFor="password">Password</label>
               <div className={style.password_wrapper}>
                 <div
-                  className={style.password_eye}
+                  className={`icon ${style.password_eye}`}
                   onClick={() => handleToggle()}
                 >
-                  {toggle && (
-                    <span className="material-symbols-outlined">
-                      visibility_off
-                    </span>
-                  )}
-                  {!toggle && (
-                    <span className="material-symbols-outlined">
-                      visibility
-                    </span>
-                  )}
+                  {toggle && <IoEyeOffOutline />}
+                  {!toggle && <IoEyeOutline />}
                 </div>
                 <input
                   required
