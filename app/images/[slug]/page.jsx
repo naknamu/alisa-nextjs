@@ -56,8 +56,8 @@ export default async function ImageDetail({ params }) {
           alt={image.caption}
           width={"500"}
           height={"300"}
-          sizes="100vw"
-          priority={true}
+          sizes="(max-width: 768px) 468px, 90.91vw, (max-width: 1200px) 95vw"
+          // priority={true}
         />
       </div>
       <div className={style.detail_wrap}>

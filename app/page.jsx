@@ -10,7 +10,7 @@ export default async function Home() {
   const images = await getImages();
   const categories = await getCategories();
 
-  const session = getSession();
+  const session = await getSession();
   const uploaderName = session?.user?.name;
 
   return (
