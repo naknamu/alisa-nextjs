@@ -9,6 +9,7 @@ import style from "./MenuMobile.module.css";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import LogBtn from "./LogBtn";
+import Link from "next/link";
 
 export default function MenuMobile({ categories }) {
   const { data } = useSession();

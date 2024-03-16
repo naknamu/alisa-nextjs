@@ -1,17 +1,6 @@
 import style from "./LatestUpload.module.css";
 import Link from "next/link";
-
-async function getLatestUpload() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/images`, {
-    next: {
-      revalidate: 0,
-    },
-  });
-
-  const data = await res.json();
-
-  return data;
-}
+import { getLatestUpload } from "@/app/actions"
 
 export default async function LatestUpload() {
   const latest = await getLatestUpload();

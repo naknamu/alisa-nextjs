@@ -4,39 +4,13 @@ import ImageCards from "./components/ImageCards";
 import LatestUpload from "./components/LatestUpload";
 import ProfileBtn from "./components/ProfileBtn";
 import Footer from "./components/Footer";
-
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-
-// fetch images from the API
-async function getImages() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/images`, {
-    next: {
-      revalidate: 0,
-    },
-  });
-
-  // console.log(process.env.NEXT_PUBLIC_API_URL);
-
-  return res.json();
-}
-
-// fetch categories from API
-async function getCategories() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories`, {
-    next: {
-      revalidate: 60,
-    },
-  });
-
-  return res.json();
-}
+import { getCategories, getImages, getSession } from "./actions";
 
 export default async function Home() {
   const images = await getImages();
   const categories = await getCategories();
 
-  const session = await getServerSession(authOptions);
+  const session = getSession();
   const uploaderName = session?.user?.name;
 
   return (
