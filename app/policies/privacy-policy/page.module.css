@@ -5,3 +5,10 @@
     flex-direction: column;
     gap: 1rem;
 }
+
+/* Mobile */
+@media (max-width: 700px) {
+    .container {
+        max-width: 380px;
+    }
+}
