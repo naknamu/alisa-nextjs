@@ -3,8 +3,9 @@ import style from "@/app/column.module.css";
 import styles from "./page.module.css";
 import ImageCards from "@/app/components/ImageCards";
 import ProfileBtn from "@/app/components/ProfileBtn";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import Footer from "@/app/components/Footer";
-import { getCategories, getSession } from "@/app/actions";
 // import LatestUpload from "@/app/components/LatestUpload";
 
 export async function generateStaticParams() {
@@ -33,6 +34,17 @@ async function getImagesByCategory(slug) {
   return images;
 }
 
+// fetch categories from API
+async function getCategories() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories`, {
+    next: {
+      revalidate: 60,
+    },
+  });
+
+  return res.json();
+}
+
 export default async function Category({ params }) {
   const images = await getImagesByCategory(params.slug);
   const categories = await getCategories();
@@ -40,7 +52,7 @@ export default async function Category({ params }) {
   // Convert slug to category name
   const title = params.slug.replace(/-/g, " ").toUpperCase();
 
-  const session = await getSession();
+  const session = await getServerSession(authOptions);
   const uploaderName = session?.user?.name;
 
   return (
