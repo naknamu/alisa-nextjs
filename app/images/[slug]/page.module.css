@@ -63,7 +63,7 @@
   margin-bottom: 2rem;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 901px) {
   .container {
     display: flex;
     flex-direction: column;
