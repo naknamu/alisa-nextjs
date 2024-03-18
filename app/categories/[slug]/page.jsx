@@ -20,7 +20,7 @@ export async function generateStaticParams() {
 async function getImagesByCategory(slug) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/images/`, {
     next: {
-      revalidate: 60,
+      revalidate: 60 * 15,
     },
   });
 
@@ -38,7 +38,7 @@ async function getImagesByCategory(slug) {
 async function getCategories() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories`, {
     next: {
-      revalidate: 60,
+      revalidate: 60 * 60 * 24 * 7, // 1 week
     },
   });
 

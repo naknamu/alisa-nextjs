@@ -3,14 +3,15 @@ import style from "./ImageCards.module.css";
 import DateUploaded from "./DateUploaded";
 import MoreHoriz from "./MoreHoriz";
 
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+// import { getServerSession } from "next-auth/next";
+// import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import LoveBtn from "./LoveBtn";
 import ShareBtn from "./ShareBtn";
 import Image from "next/image";
+import { getSession } from "../actions";
 
 export default async function ImageCards({ images }) {
-  const session = await getServerSession(authOptions);
+  const session = await getSession();
 
   const getImageSource = (image) => {
     if (image.source.includes("backblazeb2.com")) {

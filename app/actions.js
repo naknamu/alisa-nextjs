@@ -53,10 +53,9 @@ export async function getCategories() {
 export async function getImages() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/images`, {
     next: {
-      revalidate: 0,
+      revalidate: 60 * 15,
     },
   });
-  // console.log(process.env.NEXT_PUBLIC_API_URL);
   return res.json();
 }
 
@@ -70,7 +69,7 @@ export async function getSession() {
 export async function getLatestUpload() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/images`, {
     next: {
-      revalidate: 0,
+      revalidate: 60,
     },
   });
 

@@ -29,7 +29,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
 async function getImageDetail(slug) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/images/` + slug, {
     next: {
-      revalidate: 0,
+      revalidate: 60 * 15,
     },
   });
 
