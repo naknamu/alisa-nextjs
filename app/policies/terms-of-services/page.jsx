@@ -1,5 +1,7 @@
 import style from "./page.module.css";
 
+export const dynamic = 'force-static';
+
 export default function page() {
   return (
     <main>
