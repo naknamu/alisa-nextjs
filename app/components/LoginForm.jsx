@@ -4,14 +4,17 @@ import style from "./LoginForm.module.css";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 export default function LoginForm() {
   const [uploaderInfo, setUploaderInfo] = useState({ email: "", password: "" });
   const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     const res = await signIn("credentials", {
       email: uploaderInfo.email,
@@ -20,13 +23,14 @@ export default function LoginForm() {
     });
 
     if (res.status === 200) {
-      console.log(res);
+      toast.success("Logged in successfully!");
       router.push("/");
       router.refresh();
       setIsError(false);
     } else {
       console.log(res.error);
       setIsError(true);
+      setIsLoading(false);
     }
   };
 
@@ -66,8 +70,9 @@ export default function LoginForm() {
           </span>
         )}
 
-        <button type="submit" className={style.button}>
-          Log in
+        <button type="submit" className={style.button} disabled={isLoading}>
+          {!isLoading && <span>Log in</span>}
+          {isLoading && <span>Logging in...</span>}
         </button>
       </form>
     </div>
