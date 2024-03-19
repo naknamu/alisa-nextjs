@@ -53,6 +53,7 @@
 .button:disabled {
   background: gray;
   transform: scale(1);
+  cursor: not-allowed;
 }
 
 /* Mobile */
