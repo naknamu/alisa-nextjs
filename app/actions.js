@@ -61,8 +61,8 @@ export async function getImages() {
 
 // fetch user session
 export async function getSession() {
-    const session = await getServerSession(authOptions);
-    return session;
+  const session = await getServerSession(authOptions);
+  return session;
 }
 
 // fetch latest uploaded images
@@ -74,4 +74,56 @@ export async function getLatestUpload() {
   });
 
   return res.json();
+}
+
+// test fetching for infinite scroll
+export async function getImagesPaginated(startIndex, size) {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/images`, {
+    next: {
+      revalidate: 60 * 15,
+    },
+  });
+  const data = await res.json();
+  const endIndex = startIndex + size;
+  const paginated = data.slice(startIndex, endIndex);
+
+  return paginated;
+}
+
+export async function getImagesByCategoryPaginated(slug, startIndex, size) {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/images/`, {
+    next: {
+      revalidate: 60 * 15,
+    },
+  });
+
+  const data = await res.json();
+
+  // filter images uploaded by category
+  const images = data.filter((image) =>
+    image.category.some((category) => slug === category.slug)
+  );
+
+  const endIndex = startIndex + size;
+  const paginated = images.slice(startIndex, endIndex);
+
+  return paginated;
+}
+
+export async function getUploaderImagesPaginated(slug, startIndex, size) {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/images/`, {
+    next: {
+      revalidate: 0,
+    },
+  });
+
+  const data = await res.json();
+
+  // filter images uploaded by the uploader
+  const images = data.filter((image) => slug === image.uploader.slug);
+
+  const endIndex = startIndex + size;
+  const paginated = images.slice(startIndex, endIndex);
+
+  return paginated;
 }
