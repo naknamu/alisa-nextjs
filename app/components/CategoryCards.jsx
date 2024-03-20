@@ -4,8 +4,15 @@ import style from "./CategoryCards.module.css";
 import { getImagesByCategoryPaginated } from "../actions";
 import { useState, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
-import ImageCard from "./ImageCard";
 import LoaderUI from "./LoaderUI";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import dynamic from "next/dynamic";
+
+const ImageCard = dynamic(() => import("./ImageCard"), {
+  ssr: false,
+  loading: () => <Skeleton />,
+});
 
 const NUMBER_OF_IMAGES_TO_FETCH = parseInt(
   process.env.NEXT_PUBLIC_INITIAL_NUMBER
