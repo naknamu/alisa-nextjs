@@ -6,12 +6,11 @@ import { useState, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import LoaderUI from "./LoaderUI";
 import dynamic from "next/dynamic";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
+import SkeletonLoader from "./SkeletonLoader";
 
 const ImageCard = dynamic(() => import("./ImageCard"), {
   ssr: false,
-  loading: () => <Skeleton />,
+  loading: () => <SkeletonLoader />,
 });
 
 const NUMBER_OF_IMAGES_TO_FETCH = parseInt(
