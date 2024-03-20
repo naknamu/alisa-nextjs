@@ -7,6 +7,7 @@ import { useInView } from "react-intersection-observer";
 import LoaderUI from "./LoaderUI";
 import dynamic from "next/dynamic";
 import SkeletonLoader from "./SkeletonLoader";
+import Empty from "./Empty";
 
 const ImageCard = dynamic(() => import("./ImageCard"), {
   ssr: false,
@@ -20,6 +21,7 @@ const NUMBER_OF_IMAGES_TO_FETCH = parseInt(
 export default function CategoryCards({ initialImages, slug }) {
   const [offset, setOffset] = useState(NUMBER_OF_IMAGES_TO_FETCH);
   const [images, setImages] = useState(initialImages);
+  const [isFetching, setIsFetching] = useState(true);
   const { ref, inView } = useInView();
 
   const loadMoreImages = async () => {
@@ -28,6 +30,13 @@ export default function CategoryCards({ initialImages, slug }) {
       offset,
       NUMBER_OF_IMAGES_TO_FETCH
     );
+
+    if (apiImages.length === 0) {
+      setIsFetching(false);
+    } else {
+      setIsFetching(true);
+    }
+
     setImages([...images, ...apiImages]);
     setOffset(offset + NUMBER_OF_IMAGES_TO_FETCH);
   };
@@ -45,7 +54,8 @@ export default function CategoryCards({ initialImages, slug }) {
           <ImageCard key={image._id} image={image} />
         ))}
         <div ref={ref} className={style.loader}>
-          <LoaderUI />
+          {isFetching && <LoaderUI />}
+          {!isFetching && <Empty />}
         </div>
       </div>
     </div>

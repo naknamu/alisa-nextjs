@@ -1,6 +1,5 @@
 import CategoryBtn from "@/app/components/CategoryBtn";
 import style from "@/app/column.module.css";
-import styles from "./page.module.css";
 import ProfileBtn from "@/app/components/ProfileBtn";
 import Footer from "@/app/components/Footer";
 import { getImagesByCategoryPaginated, getSession } from "@/app/actions";
@@ -59,14 +58,6 @@ export default async function Category({ params }) {
           <h2 className="title">{title}</h2>
           {images && (
             <CategoryCards initialImages={images} slug={params.slug} />
-          )}
-          {images.length === 0 && (
-            <span className={styles.empty}>
-              No images uploaded yet. 😢
-              <br />
-              <br />
-              Please log in to upload an image. 🥺🙏
-            </span>
           )}
         </div>
       </div>

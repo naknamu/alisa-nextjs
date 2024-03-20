@@ -94,6 +94,11 @@ textarea:focus {
   cursor: pointer;
 }
 
+.empty {
+  color: gray;
+  margin-left: 1rem;
+}
+
 /* Mobile */
 @media (max-width: 700px) {
   
