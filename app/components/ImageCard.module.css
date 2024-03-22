@@ -23,6 +23,14 @@
   cursor: pointer;
 }
 
+.blur {
+  filter: blur(40px);
+}
+
+.unblur {
+  filter: blur(0);
+}
+
 .header {
   display: flex;
   gap: 8px;

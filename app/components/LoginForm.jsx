@@ -2,15 +2,22 @@
 
 import style from "./LoginForm.module.css";
 import { signIn } from "next-auth/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { getCookie, setCookie } from "cookies-next";
 
 export default function LoginForm() {
   const [uploaderInfo, setUploaderInfo] = useState({ email: "", password: "" });
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    if (getCookie("nsfw") === undefined) {
+      setCookie("nsfw", "OFF");
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

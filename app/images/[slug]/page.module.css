@@ -33,6 +33,14 @@
   object-fit: cover; /* Ensure the image covers the container */
 }
 
+.blur {
+  filter: blur(40px);
+}
+
+.unblur {
+  filter: blur(0);
+}
+
 .header {
   display: flex;
   gap: 8px;

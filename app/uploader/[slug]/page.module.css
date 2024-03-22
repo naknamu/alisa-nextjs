@@ -1,7 +1,7 @@
 .uploader_details {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 2rem;
   align-items: flex-start;
 }
 
@@ -24,4 +24,10 @@
 
 .uploadbtn:active {
   background-image: linear-gradient(rgb(0 0 0/0%) 0 0);
+}
+
+.btn_group {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }

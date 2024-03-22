@@ -4,6 +4,9 @@ import DateUploaded from "@/app/components/DateUploaded";
 import LoveBtn from "@/app/components/LoveBtn";
 import ShareBtn from "@/app/components/ShareBtn";
 import Image from "next/image";
+import { getCookie } from "cookies-next";
+import { getSession } from "@/app/actions";
+import { cookies } from 'next/headers'
 
 export async function generateMetadata({ params, searchParams }, parent) {
   // read route params
@@ -38,6 +41,7 @@ async function getImageDetail(slug) {
 
 export default async function ImageDetail({ params }) {
   const image = await getImageDetail(params.slug);
+  const data = await getSession();
 
   const getImageSource = (image) => {
     if (image.source.includes("backblazeb2.com")) {
@@ -47,11 +51,25 @@ export default async function ImageDetail({ params }) {
     return "";
   };
 
+  const blurNSFW = (image) => {
+    let isNSFW = image.category.some((category) => category.name === "NSFW");
+
+    if (!data && !isNSFW) {
+      return style.unblur;
+    } else if (isNSFW) {
+      if (!data || getCookie("nsfw", { cookies }) === "OFF") {
+        return style.blur;
+      } else {
+        return style.unblur;
+      }
+    }    
+  };
+
   return (
     <div className={style.container}>
       <div className={style.image_wrap}>
         <Image
-          className={style.img}
+          className={blurNSFW(image)}
           src={getImageSource(image)}
           alt={image.caption}
           width={"500"}
@@ -91,8 +109,8 @@ export default async function ImageDetail({ params }) {
           </div>
         </div>
         <div className={style.footer}>
-            <LoveBtn image={image} />
-            <ShareBtn image={image} />
+          <LoveBtn image={image} />
+          <ShareBtn image={image} />
         </div>
       </div>
     </div>

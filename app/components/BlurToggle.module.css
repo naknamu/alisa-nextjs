@@ -1,0 +1,10 @@
+.container {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .container > svg {
+    transform: scale(1.5);
+    margin-left: 8px;
+  }
