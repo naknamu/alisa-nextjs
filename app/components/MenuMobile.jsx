@@ -10,6 +10,7 @@ import { useState } from "react";
 import { useSession } from "next-auth/react";
 import LogBtn from "./LogBtn";
 import Link from "next/link";
+import BlurToggle from "./BlurToggle";
 
 export default function MenuMobile({ categories }) {
   const { data } = useSession();
@@ -53,6 +54,7 @@ export default function MenuMobile({ categories }) {
                   <b>Upload Image</b>
                 </Link>
               )}
+              { data && <BlurToggle />}
               <CategoryBtn categories={categories} />
               <LogBtn />
               <Footer />
