@@ -50,3 +50,17 @@
   top: -1rem;
   margin-block: 1rem;
 }
+
+/* Tablet and Smaller Desktop */
+@media (min-width: 701px) {
+
+  .img {
+    max-height: 83vh;
+  }
+
+  .image_link {
+    display: flex;
+    justify-content: center;
+  }
+
+}

@@ -63,7 +63,7 @@
   margin-bottom: 2rem;
 }
 
-@media (max-width: 901px) {
+@media (max-width: 700px) {
   .container {
     display: flex;
     flex-direction: column;
@@ -76,5 +76,13 @@
     position: static;
     width: inherit;
     height: auto;
+  }
+}
+
+@media (min-width: 701px) {
+
+  .image_wrap > img {
+    height: 88vh;
+    object-fit: scale-down;
   }
 }

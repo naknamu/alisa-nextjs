@@ -64,7 +64,7 @@
 
 }
 
-/* Tablet and Smaller Desktop */
+/* Medium Desktop */
 @media (min-width: 1024px) and (max-width: 1124px) {
 
   .left_column, .right_column {
@@ -77,7 +77,7 @@
 
 }
 
-/* Tablet and Smaller Desktop */
+/* Bigger Desktop */
 @media (min-width: 1440px) {
 
   .middle_column {

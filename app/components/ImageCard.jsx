@@ -35,7 +35,7 @@ export default function ImageCard({ image }) {
         </div>
       </div>
       <h2 className={style.h2}>{image.caption}</h2>
-      <Link href={`/images/${image.slug}`}>
+      <Link href={`/images/${image.slug}`} className={style.image_link}>
         <Image
           className={style.img}
           src={getImageSource(image)}
