@@ -1,27 +1,13 @@
 import style from "@/app/column.module.css";
 import styles from "./page.module.css";
 import Link from "next/link";
-import { getSession, getUploaderImagesPaginated } from "@/app/actions";
+import { getSession, getUploaderImagesPaginated, getUploader } from "@/app/actions";
 import UploaderCards from "@/app/components/UploaderCards";
 import BlurToggle from "@/app/components/BlurToggle";
 
 const INITIAL_NUMBER_OF_IMAGES = parseInt(
   process.env.NEXT_PUBLIC_INITIAL_NUMBER
 );
-
-// fetch uploader details from the API
-async function getUploader(slug) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/uploaders/` + slug,
-    {
-      next: {
-        revalidate: 0,
-      },
-    }
-  );
-
-  return res.json();
-}
 
 export default async function UploaderDetails({ params }) {
   const uploader = await getUploader(params.slug);

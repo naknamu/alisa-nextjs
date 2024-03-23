@@ -5,7 +5,7 @@ import LoveBtn from "@/app/components/LoveBtn";
 import ShareBtn from "@/app/components/ShareBtn";
 import Image from "next/image";
 import { getCookie } from "cookies-next";
-import { getSession } from "@/app/actions";
+import { getSession, getImageDetail } from "@/app/actions";
 import { cookies } from 'next/headers'
 
 export async function generateMetadata({ params, searchParams }, parent) {
@@ -26,17 +26,6 @@ export async function generateMetadata({ params, searchParams }, parent) {
       images: [`${image.source}`, ...previousImages],
     },
   };
-}
-
-// fetch image detail from the API
-async function getImageDetail(slug) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/images/` + slug, {
-    next: {
-      revalidate: 60 * 15,
-    },
-  });
-
-  return res.json();
 }
 
 export default async function ImageDetail({ params }) {

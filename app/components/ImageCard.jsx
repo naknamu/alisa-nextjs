@@ -1,3 +1,5 @@
+"use client";
+
 import style from "./ImageCard.module.css";
 import DateUploaded from "./DateUploaded";
 import MoreHoriz from "./MoreHoriz";

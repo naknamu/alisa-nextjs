@@ -127,3 +127,28 @@ export async function getUploaderImagesPaginated(slug, startIndex, size) {
 
   return paginated;
 }
+
+// fetch image detail from the API
+export async function getImageDetail(slug) {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/images/` + slug, {
+    next: {
+      revalidate: 60 * 15,
+    },
+  });
+
+  return res.json();
+}
+
+// fetch uploader details from the API
+export async function getUploader(slug) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/uploaders/` + slug,
+    {
+      next: {
+        revalidate: 60 * 15,
+      },
+    }
+  );
+
+  return res.json();
+}
