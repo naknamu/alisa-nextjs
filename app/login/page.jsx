@@ -2,7 +2,7 @@ import style from "./page.module.css";
 import Link from "next/link";
 import LoginForm from "../components/LoginForm";
 
-export const dynamic = 'force-static';
+export const dynamic = "force-static";
 export const revalidate = false;
 
 export default function Login() {

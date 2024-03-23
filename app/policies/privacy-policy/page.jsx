@@ -1,6 +1,6 @@
 import style from "./page.module.css";
 
-export const dynamic = 'force-static';
+export const dynamic = "force-static";
 export const revalidate = false;
 
 export default function page() {
@@ -288,11 +288,11 @@ export default function page() {
             <p>
               <strong>To contact You:</strong> To contact You by email,
               telephone calls, SMS, or other equivalent forms of electronic
-              communication, such as a mobile application&#39;s push notifications
-              regarding updates or informative communications related to the
-              functionalities, products or contracted services, including the
-              security updates, when necessary or reasonable for their
-              implementation.
+              communication, such as a mobile application&#39;s push
+              notifications regarding updates or informative communications
+              related to the functionalities, products or contracted services,
+              including the security updates, when necessary or reasonable for
+              their implementation.
             </p>
           </li>
           <li>
@@ -388,12 +388,12 @@ export default function page() {
         <h3>Transfer of Your Personal Data</h3>
         <p>
           Your information, including Personal Data, is processed at the
-          Company&#39;s operating offices and in any other places where the parties
-          involved in the processing are located. It means that this information
-          may be transferred to — and maintained on — computers located outside
-          of Your state, province, country or other governmental jurisdiction
-          where the data protection laws may differ than those from Your
-          jurisdiction.
+          Company&#39;s operating offices and in any other places where the
+          parties involved in the processing are located. It means that this
+          information may be transferred to — and maintained on — computers
+          located outside of Your state, province, country or other governmental
+          jurisdiction where the data protection laws may differ than those from
+          Your jurisdiction.
         </p>
         <p>
           Your consent to this Privacy Policy followed by Your submission of
@@ -485,8 +485,8 @@ export default function page() {
         <p>
           Our Service may contain links to other websites that are not operated
           by Us. If You click on a third party link, You will be directed to
-          that third party&#39;s site. We strongly advise You to review the Privacy
-          Policy of every site You visit.
+          that third party&#39;s site. We strongly advise You to review the
+          Privacy Policy of every site You visit.
         </p>
         <p>
           We have no control over and assume no responsibility for the content,

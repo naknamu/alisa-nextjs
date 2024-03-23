@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import Provider from "@/app/context/client-provider.jsx";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import NextTopLoader from 'nextjs-toploader';
+import NextTopLoader from "nextjs-toploader";
 import { Toaster } from "react-hot-toast";
 
 // components
@@ -25,7 +25,7 @@ export default async function RootLayout({ children }) {
       <body className={inter.className}>
         <Provider session={session}>
           <Navbar />
-          <NextTopLoader showSpinner={false}/>
+          <NextTopLoader showSpinner={false} />
           <Toaster position="bottom-center" />
           {children}
         </Provider>

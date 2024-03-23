@@ -15,7 +15,7 @@ const ImageCard = dynamic(() => import("./ImageCard"), {
 });
 
 const NUMBER_OF_IMAGES_TO_FETCH = parseInt(
-  process.env.NEXT_PUBLIC_INITIAL_NUMBER
+  process.env.NEXT_PUBLIC_INITIAL_NUMBER,
 );
 
 export default function CategoryCards({ initialImages, slug }) {
@@ -28,7 +28,7 @@ export default function CategoryCards({ initialImages, slug }) {
     const apiImages = await getImagesByCategoryPaginated(
       slug,
       offset,
-      NUMBER_OF_IMAGES_TO_FETCH
+      NUMBER_OF_IMAGES_TO_FETCH,
     );
 
     if (apiImages.length === 0) {

@@ -1,21 +1,23 @@
 .container {
-    position: absolute;
-    z-index: 5;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    right: 0;
-    top: 2rem;
-    border: 1px solid #e2e6e9;
+  position: absolute;
+  z-index: 5;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  right: 0;
+  top: 2rem;
+  border: 1px solid #e2e6e9;
 }
 
-.edit, .delete {
-    display: flex;
-    gap: 8px;
-    padding: 12px 32px;
-    text-align: start;
+.edit,
+.delete {
+  display: flex;
+  gap: 8px;
+  padding: 12px 32px;
+  text-align: start;
 }
 
-.edit:hover, .delete:hover {
-    background-image: linear-gradient(rgb(0 0 0/40%) 0 0);
+.edit:hover,
+.delete:hover {
+  background-image: linear-gradient(rgb(0 0 0/40%) 0 0);
 }

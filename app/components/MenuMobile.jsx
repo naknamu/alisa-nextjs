@@ -29,10 +29,9 @@ export default function MenuMobile({ categories }) {
       <div className={`icon ${style.menubtn}`} onClick={() => handleMenu()}>
         <IoIosMenu />
       </div>
-      {isMenu && 
+      {isMenu && (
         <div className={style.menu_overlay}>
           <div className={style.menu_content}>
-
             <div className={style.menu_content_head}>
               <div onClick={() => setIsMenu(false)}>
                 {data && <ProfileBtn uploaderName={data.user.name} />}
@@ -54,14 +53,14 @@ export default function MenuMobile({ categories }) {
                   <b>Upload Image</b>
                 </Link>
               )}
-              { data && <BlurToggle />}
+              {data && <BlurToggle />}
               <CategoryBtn categories={categories} />
               <LogBtn />
               <Footer />
             </div>
           </div>
         </div>
-      }
+      )}
     </div>
   );
 }

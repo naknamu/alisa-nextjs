@@ -8,14 +8,14 @@ export default function ShareBtn({ image }) {
   const handleShare = () => {
     // Copy URL to Clipboard
     navigator.clipboard.writeText(
-      `${process.env.NEXT_PUBLIC_URL}/images/${image.slug}`
+      `${process.env.NEXT_PUBLIC_URL}/images/${image.slug}`,
     );
     toast.success("Link copied!");
   };
   return (
     <div className={style.container}>
       <span className="icon" onClick={() => handleShare()}>
-       <IoShareSocialOutline />
+        <IoShareSocialOutline />
       </span>
       <p className={style.share_text}>Share</p>
     </div>

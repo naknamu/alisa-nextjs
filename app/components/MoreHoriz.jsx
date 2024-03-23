@@ -21,14 +21,16 @@ export default function MoreHoriz({ image }) {
     } else {
       setTogglePanel(true);
     }
-  }
+  };
 
   return (
     <div className={style.container} ref={ref}>
-        {/* <span className="material-symbols-outlined" >more_horiz</span> */}
-        <FiMoreHorizontal className="icon" onClick={handleMorehoriz}/>
-        {/**Enable edit and delete functionality on uploader's own images **/}
-        {togglePanel && (data?.user?.name === image.uploader.slug) && <Panel image={image} />}
+      {/* <span className="material-symbols-outlined" >more_horiz</span> */}
+      <FiMoreHorizontal className="icon" onClick={handleMorehoriz} />
+      {/**Enable edit and delete functionality on uploader's own images **/}
+      {togglePanel && data?.user?.name === image.uploader.slug && (
+        <Panel image={image} />
+      )}
     </div>
-  )
+  );
 }

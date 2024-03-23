@@ -17,7 +17,7 @@ export default function ConfirmDialog({ setIsDialog, image }) {
         headers: {
           Authorization: `Bearer ${auth_token}`,
         },
-      }
+      },
     );
 
     if (res.status === 200) {

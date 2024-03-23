@@ -1,6 +1,6 @@
 import style from "./LatestUpload.module.css";
 import Link from "next/link";
-import { getLatestUpload } from "@/app/actions"
+import { getLatestUpload } from "@/app/actions";
 
 export default async function LatestUpload() {
   const latest = await getLatestUpload();

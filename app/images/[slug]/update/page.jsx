@@ -23,7 +23,7 @@ export default function UpdateImage({ params }) {
   useEffect(() => {
     const getImageDetail = async (slug) => {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/images/` + slug
+        `${process.env.NEXT_PUBLIC_API_URL}/images/` + slug,
       );
       const data = await res.json();
       // Assign inital values to the state
@@ -44,7 +44,7 @@ export default function UpdateImage({ params }) {
     // fetch uploader details from the API
     const getUploader = async (slug) => {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/uploaders/` + slug
+        `${process.env.NEXT_PUBLIC_API_URL}/uploaders/` + slug,
       );
 
       const data = await res.json();
@@ -70,7 +70,7 @@ export default function UpdateImage({ params }) {
       setChosenCategory((category) => [...category, e.target.value]);
     } else {
       setChosenCategory(
-        chosenCategory.filter((category) => category !== e.target.value)
+        chosenCategory.filter((category) => category !== e.target.value),
       );
     }
   };
@@ -97,7 +97,7 @@ export default function UpdateImage({ params }) {
           Authorization: `Bearer ${auth_token}`,
         },
         body: JSON.stringify(imageDetail),
-      }
+      },
     );
 
     if (res.status === 200) {

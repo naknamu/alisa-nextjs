@@ -15,7 +15,7 @@ const ImageCard = dynamic(() => import("./ImageCard"), {
 });
 
 const NUMBER_OF_IMAGES_TO_FETCH = parseInt(
-  process.env.NEXT_PUBLIC_INITIAL_NUMBER
+  process.env.NEXT_PUBLIC_INITIAL_NUMBER,
 );
 
 export default function ImageCards({ initialImages }) {
@@ -27,7 +27,7 @@ export default function ImageCards({ initialImages }) {
   const loadMoreImages = async () => {
     const apiImages = await getImagesPaginated(
       offset,
-      NUMBER_OF_IMAGES_TO_FETCH
+      NUMBER_OF_IMAGES_TO_FETCH,
     );
 
     if (apiImages.length === 0) {
@@ -35,7 +35,7 @@ export default function ImageCards({ initialImages }) {
     } else {
       setIsFetching(true);
     }
-    
+
     setImages([...images, ...apiImages]);
     setOffset(offset + NUMBER_OF_IMAGES_TO_FETCH);
   };

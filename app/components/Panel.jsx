@@ -13,14 +13,14 @@ export default function Panel({ image }) {
 
   const handleEditImage = () => {
     // CALL UPDATE IMAGE FORM
-    router.push(`/images/${image.slug}/update`)
-  }
+    router.push(`/images/${image.slug}/update`);
+  };
 
   const handleDeleteImage = () => {
     // Enable a dialog confirmation
     setIsDialog(true);
     // Delete image logic
-  }
+  };
 
   return (
     <div className={style.container}>

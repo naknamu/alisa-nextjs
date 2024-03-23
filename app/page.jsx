@@ -7,7 +7,7 @@ import Footer from "./components/Footer";
 import { getCategories, getSession, getImagesPaginated } from "./actions";
 
 const INITIAL_NUMBER_OF_IMAGES = parseInt(
-  process.env.NEXT_PUBLIC_INITIAL_NUMBER
+  process.env.NEXT_PUBLIC_INITIAL_NUMBER,
 );
 
 export default async function Home() {

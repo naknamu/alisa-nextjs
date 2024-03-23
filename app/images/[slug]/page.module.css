@@ -88,7 +88,6 @@
 }
 
 @media (min-width: 701px) {
-
   .image_wrap > img {
     height: 88vh;
     object-fit: scale-down;

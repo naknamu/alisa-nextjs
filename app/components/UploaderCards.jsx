@@ -15,7 +15,7 @@ const ImageCard = dynamic(() => import("./ImageCard"), {
 });
 
 const NUMBER_OF_IMAGES_TO_FETCH = parseInt(
-  process.env.NEXT_PUBLIC_INITIAL_NUMBER
+  process.env.NEXT_PUBLIC_INITIAL_NUMBER,
 );
 
 export default function UploaderCards({ initialImages, slug }) {
@@ -28,9 +28,9 @@ export default function UploaderCards({ initialImages, slug }) {
     const apiImages = await getUploaderImagesPaginated(
       slug,
       offset,
-      NUMBER_OF_IMAGES_TO_FETCH
+      NUMBER_OF_IMAGES_TO_FETCH,
     );
-    
+
     if (apiImages.length === 0) {
       setIsFetching(false);
     } else {

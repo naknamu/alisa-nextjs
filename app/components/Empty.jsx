@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 
 export default function Empty() {
   return (
     <div>
-        <p className="empty">No more images to load, please upload more 🥺...</p>
+      <p className="empty">No more images to load, please upload more 🥺...</p>
     </div>
-  )
+  );
 }

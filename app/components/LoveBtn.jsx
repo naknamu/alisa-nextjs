@@ -19,7 +19,7 @@ export default function LoveBtn({ image }) {
 
   let name;
   if (session?.data?.user) {
-      name = session.data.user.name;
+    name = session.data.user.name;
   }
 
   useEffect(() => {
@@ -50,11 +50,16 @@ export default function LoveBtn({ image }) {
   const handleRedirect = () => {
     // redirect user to sign up page
     router.push("/signup");
-  }
+  };
 
   return (
     <div className={style.container}>
-      <span className="icon" onClick={() => {name ? handleLove() : handleRedirect()}}>
+      <span
+        className="icon"
+        onClick={() => {
+          name ? handleLove() : handleRedirect();
+        }}
+      >
         {isLove ? <FaHeart /> : <FaRegHeart />}
       </span>
       <span className={style.love_count}>{loveCount}</span>

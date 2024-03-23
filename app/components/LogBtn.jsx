@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { signOut } from "next-auth/react";
-import { deleteCookie } from 'cookies-next';
+import { deleteCookie } from "cookies-next";
 import toast from "react-hot-toast";
 
 export default function LogBtn() {
@@ -17,9 +17,9 @@ export default function LogBtn() {
     });
 
     // Delete auth cookie
-    deleteCookie('auth_token');
+    deleteCookie("auth_token");
 
-    toast.success("Until next time! 🤗")
+    toast.success("Until next time! 🤗");
     router.push("/login");
     router.refresh();
   }

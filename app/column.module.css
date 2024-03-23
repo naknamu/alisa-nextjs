@@ -53,33 +53,30 @@
 
 /* Tablet and Smaller Desktop */
 @media (min-width: 701px) and (max-width: 1023px) {
-
-  .left_column, .right_column {
+  .left_column,
+  .right_column {
     width: 160px;
   }
 
   .middle_column {
     width: 425px;
   }
-
 }
 
 /* Medium Desktop */
 @media (min-width: 1024px) and (max-width: 1124px) {
-
-  .left_column, .right_column {
+  .left_column,
+  .right_column {
     width: 215px;
   }
 
   .middle_column {
     width: 500px;
   }
-
 }
 
 /* Bigger Desktop */
 @media (min-width: 1440px) {
-
   .middle_column {
     width: 700px;
   }

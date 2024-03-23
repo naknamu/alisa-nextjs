@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -44,7 +44,7 @@ export default function SignupForm() {
         headers: {
           "Content-Type": "application/json",
         },
-      }
+      },
     );
 
     const data = await res.json();

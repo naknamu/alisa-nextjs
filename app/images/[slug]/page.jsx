@@ -6,7 +6,7 @@ import ShareBtn from "@/app/components/ShareBtn";
 import Image from "next/image";
 import { getCookie } from "cookies-next";
 import { getSession, getImageDetail } from "@/app/actions";
-import { cookies } from 'next/headers'
+import { cookies } from "next/headers";
 
 export async function generateMetadata({ params, searchParams }, parent) {
   // read route params
@@ -14,7 +14,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
 
   // fetch data
   const image = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/images/` + slug
+    `${process.env.NEXT_PUBLIC_API_URL}/images/` + slug,
   ).then((res) => res.json());
 
   // optionally access and extend (rather than replace) parent metadata
@@ -51,7 +51,7 @@ export default async function ImageDetail({ params }) {
       } else {
         return style.unblur;
       }
-    }    
+    }
   };
 
   return (

@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { cookies } from 'next/headers'
-import { setCookie } from 'cookies-next';
+import { cookies } from "next/headers";
+import { setCookie } from "cookies-next";
 
 async function authenticate(emailOrUsername, password) {
   const uploader = {
@@ -17,9 +17,9 @@ async function authenticate(emailOrUsername, password) {
     body: JSON.stringify(uploader),
   });
 
-  const auth_token = res.headers.get('Authorization').split(' ')[1];
+  const auth_token = res.headers.get("Authorization").split(" ")[1];
 
-  setCookie('auth_token', auth_token, { cookies, maxAge: 43200 });
+  setCookie("auth_token", auth_token, { cookies, maxAge: 43200 });
 
   return res;
 }
@@ -61,9 +61,9 @@ export const authOptions = {
     verifyRequest: "/auth/verify-request", // (used for check email message)
     newUser: "/auth/new-user", // New users will be directed here on first sign in (leave the property out if not of interest)
   },
-  session: { 
+  session: {
     strategy: "jwt",
-    maxAge: 43200
+    maxAge: 43200,
   },
 };
 

@@ -1,12 +1,16 @@
 import style from "@/app/column.module.css";
 import styles from "./page.module.css";
 import Link from "next/link";
-import { getSession, getUploaderImagesPaginated, getUploader } from "@/app/actions";
+import {
+  getSession,
+  getUploaderImagesPaginated,
+  getUploader,
+} from "@/app/actions";
 import UploaderCards from "@/app/components/UploaderCards";
 import BlurToggle from "@/app/components/BlurToggle";
 
 const INITIAL_NUMBER_OF_IMAGES = parseInt(
-  process.env.NEXT_PUBLIC_INITIAL_NUMBER
+  process.env.NEXT_PUBLIC_INITIAL_NUMBER,
 );
 
 export default async function UploaderDetails({ params }) {
@@ -15,7 +19,7 @@ export default async function UploaderDetails({ params }) {
   const uploaderImages = await getUploaderImagesPaginated(
     params.slug,
     0,
-    INITIAL_NUMBER_OF_IMAGES
+    INITIAL_NUMBER_OF_IMAGES,
   );
 
   const session = await getSession();

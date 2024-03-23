@@ -17,7 +17,7 @@ export async function incrementLove(uploaderslug, imageid, auth_token) {
         Authorization: `Bearer ${auth_token}`,
       },
       body: JSON.stringify(imagelove),
-    }
+    },
   );
 
   return res.json();
@@ -37,7 +37,7 @@ export async function removeLove(uploaderslug, imageid, auth_token) {
         Authorization: `Bearer ${auth_token}`,
       },
       body: JSON.stringify(imagelove),
-    }
+    },
   );
 
   return res.json();
@@ -101,7 +101,7 @@ export async function getImagesByCategoryPaginated(slug, startIndex, size) {
 
   // filter images uploaded by category
   const images = data.filter((image) =>
-    image.category.some((category) => slug === category.slug)
+    image.category.some((category) => slug === category.slug),
   );
 
   const endIndex = startIndex + size;
@@ -147,7 +147,7 @@ export async function getUploader(slug) {
       next: {
         revalidate: 60 * 15,
       },
-    }
+    },
   );
 
   return res.json();

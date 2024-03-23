@@ -6,12 +6,12 @@ import { getImagesByCategoryPaginated, getSession } from "@/app/actions";
 import CategoryCards from "@/app/components/CategoryCards";
 
 const INITIAL_NUMBER_OF_IMAGES = parseInt(
-  process.env.NEXT_PUBLIC_INITIAL_NUMBER
+  process.env.NEXT_PUBLIC_INITIAL_NUMBER,
 );
 
 export async function generateStaticParams() {
   const categories = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/categories`
+    `${process.env.NEXT_PUBLIC_API_URL}/categories`,
   ).then((res) => res.json());
 
   return categories.map((category) => ({
@@ -34,7 +34,7 @@ export default async function Category({ params }) {
   const images = await getImagesByCategoryPaginated(
     params.slug,
     0,
-    INITIAL_NUMBER_OF_IMAGES
+    INITIAL_NUMBER_OF_IMAGES,
   );
   const categories = await getCategories();
 
