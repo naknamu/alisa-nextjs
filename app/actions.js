@@ -132,7 +132,7 @@ export async function getUploaderImagesPaginated(slug, startIndex, size) {
 export async function getImageDetail(slug) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/images/` + slug, {
     next: {
-      revalidate: 60 * 15,
+      revalidate: 0,
     },
   });
 
@@ -145,7 +145,7 @@ export async function getUploader(slug) {
     `${process.env.NEXT_PUBLIC_API_URL}/uploaders/` + slug,
     {
       next: {
-        revalidate: 60 * 15,
+        revalidate: 60,
       },
     },
   );
