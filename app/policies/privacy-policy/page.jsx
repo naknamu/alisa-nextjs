@@ -513,7 +513,7 @@ export default function page() {
           us:
         </p>
         <ul>
-          <li>By email: jodeldelvalle@gmail.com</li>
+          <li>By email: naknamjoy@gmail.com</li>
         </ul>
       </div>
     </main>

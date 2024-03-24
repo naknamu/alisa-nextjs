@@ -512,7 +512,7 @@ export default function page() {
           <div>Alisa</div>
           <div>Block 14, Lot 36, Covenant Village</div>
           <div>Philippines</div>
-          <div>jodeldelvalle@gmail.com</div>
+          <div>naknamjoy@gmail.com</div>
         </div>
       </div>
     </main>
