@@ -16,6 +16,7 @@
   padding: 6px 8px;
   cursor: pointer;
   color: white;
+  text-align: center;
 }
 
 .uploadbtn:hover {

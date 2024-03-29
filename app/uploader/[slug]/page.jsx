@@ -57,9 +57,9 @@ export default async function UploaderDetails({ params }) {
           {uploaderImages && (
             <UploaderCards initialImages={uploaderImages} slug={params.slug} />
           )}
-          {uploaderImages.length === 0 && (
+          {/* {uploaderImages.length === 0 && (
             <span className={styles.empty}>No images uploaded yet. 😢</span>
-          )}
+          )} */}
         </div>
       </div>
     </main>

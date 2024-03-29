@@ -35,7 +35,7 @@ export default function BlurToggle() {
     <div className={style.container} onClick={() => handleToggle()}>
       {!isToogled && <FaToggleOff className="icon" />}
       {isToogled && <FaToggleOn className="icon" />}
-      <p>Display NSFW</p>
+      <p>Show NSFW Content</p>
     </div>
   );
 }
