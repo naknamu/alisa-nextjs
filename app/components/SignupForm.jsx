@@ -7,17 +7,19 @@ import { IoEyeOutline } from "react-icons/io5";
 import { IoEyeOffOutline } from "react-icons/io5";
 import style from "./SignupForm.module.css";
 import Link from "next/link";
+import { notifyWelcome } from "../actions";
+import toast from "react-hot-toast";
 
 export default function SignupForm() {
+  const router = useRouter();
   const [uploaderInfo, setUploaderInfo] = useState({
     email: "",
     username: "",
     password: "",
   });
   const [isError, setIsError] = useState(false);
-  const router = useRouter();
-
   const [toggle, setToggle] = useState(false);
+  const [isSigning, setIsSigning] = useState(false);
 
   const handleToggle = () => {
     if (toggle) {
@@ -29,6 +31,7 @@ export default function SignupForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSigning(true);
 
     const newUploader = {
       email: uploaderInfo.email,
@@ -59,13 +62,16 @@ export default function SignupForm() {
       });
       console.log(res);
       if (res.status === 200) {
+        toast.success("Sign up successful!");
         router.push(`/uploader/${data.uploader}`);
         router.refresh();
+        notifyWelcome(data.uploader);
         setIsError(false);
       }
     } else {
       console.log(data);
       setIsError(true);
+      setIsSigning(false);
     }
   };
 
@@ -137,8 +143,9 @@ export default function SignupForm() {
             </Link>
           </div>
 
-          <button type="submit" className={style.button}>
-            Sign up
+          <button type="submit" className={style.button} disabled={isSigning}>
+            {!isSigning && <span>Sign up</span>}
+            {isSigning && <span>Signing up...</span>}
           </button>
         </form>
       </div>

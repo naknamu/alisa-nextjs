@@ -169,3 +169,10 @@ export async function notifyLove(image, actor) {
     },
   });
 }
+
+// NOTIFY Welcome message
+export async function notifyWelcome(new_uploader) {
+  await knockClient.notify('welcome', {
+    recipients: [new_uploader],
+  });
+}
