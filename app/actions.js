@@ -80,7 +80,7 @@ export async function getLatestUpload() {
 export async function getImagesPaginated(startIndex, size) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/images`, {
     next: {
-      revalidate: 60,
+      revalidate: 0,
     },
   });
   const data = await res.json();
@@ -151,4 +151,21 @@ export async function getUploader(slug) {
   );
 
   return res.json();
+}
+
+import { Knock } from "@knocklabs/node";
+const knockClient = new Knock(process.env.KNOCK_SECRET_API_KEY);
+
+// NOTIFY LOVED IMAGE
+export async function notifyLove(image, actor) {
+  await knockClient.notify('love', {
+    recipients: [image.uploader.slug],
+    actor: actor,
+    data: {
+      image: {
+        caption: image.caption,
+        slug: image.slug,
+      }
+    },
+  });
 }

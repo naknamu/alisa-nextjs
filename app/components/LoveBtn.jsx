@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import style from "./LoveBtn.module.css";
-import { incrementLove, removeLove } from "@/app/actions";
+import { incrementLove, removeLove, notifyLove } from "@/app/actions";
 import { useSession } from "next-auth/react";
 import { getCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
@@ -38,6 +38,7 @@ export default function LoveBtn({ image }) {
       toast.success("+1 Love");
       // POST request to add love
       await incrementLove(name, image._id, auth_token);
+      await notifyLove(image, name);
     } else {
       setLoveCount(loveCount - 1);
       setIsLove(false);
