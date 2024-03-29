@@ -35,6 +35,10 @@
   }
 
   .btn_mobile {
-    display: block;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    color: var(--accent);
   }
 }

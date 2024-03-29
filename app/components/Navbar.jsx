@@ -21,6 +21,7 @@ export default async function Navbar() {
       </div>
       <div className={style.btn_mobile}>
         <MenuMobile categories={categories} />
+        {session && <Notification />}
       </div>
     </nav>
   );
