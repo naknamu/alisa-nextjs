@@ -44,6 +44,7 @@ export const authOptions = {
             return {
               name: `${data.name}`,
               email: `${data.email}`,
+              id: `${data.id}`,
             };
           } else {
             throw new Error("Invalid credentials");
@@ -64,6 +65,14 @@ export const authOptions = {
   session: {
     strategy: "jwt",
     maxAge: 43200,
+  },
+  callbacks: {
+    async session({ session, token, user }) {
+      // Send properties to the client
+      session.id = token.sub;
+      // console.log(session);
+      return session;
+    },
   },
 };
 

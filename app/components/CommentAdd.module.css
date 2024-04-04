@@ -1,0 +1,32 @@
+.container > textarea {
+    border: 1px solid gray;
+    width: 100%;
+    padding: 10px;
+    border-radius: 16px;
+    background-color: var(--secondary);
+}
+
+.btn_group {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+.btn_group > button {
+    color: white;
+    border-radius: 16px;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.btn_group > button:hover {
+    background-image: linear-gradient(rgb(0 0 0/40%) 0 0);
+}
+
+.cancelbtn {
+    background-color: gray;
+}
+
+.commentbtn {
+    background-color: var(--accent);
+}

@@ -9,6 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { getCookie } from "cookies-next";
+import CommentBtn from "./CommentBtn";
 
 export default function ImageCard({ image }) {
   const { data } = useSession();
@@ -65,6 +66,7 @@ export default function ImageCard({ image }) {
       </Link>
       <div className={style.footer}>
         <LoveBtn image={image} />
+        <CommentBtn image={image} />
         <ShareBtn image={image} />
       </div>
     </div>

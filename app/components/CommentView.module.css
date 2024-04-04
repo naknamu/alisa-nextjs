@@ -1,0 +1,35 @@
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: white;
+    border-radius: 12px;
+    padding: 8px 12px;
+}
+
+.header {
+    display: flex;
+    font-size: 14px;
+    gap: 1rem;
+}
+
+.uploader {
+    font-weight: bold;
+}
+
+.reply_wrapper {
+    margin-left: 2rem;
+}
