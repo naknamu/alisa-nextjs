@@ -1,13 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import CommentReply from "./CommentReply";
+import CommentReplyBtn from "./CommentReplyBtn";
 import style from "./CommentView.module.css";
 import DateUploaded from "./DateUploaded";
 import { useSession } from "next-auth/react";
 import { FiPlusCircle, FiMinusCircle } from "react-icons/fi";
 
-export default function CommentView({ comment, image }) {
+export default function CommentView({ comment }) {
   const { data } = useSession();
   const [hideReply, setHideReply] = useState(true);
 
@@ -32,7 +32,7 @@ export default function CommentView({ comment, image }) {
         </span>
 
         <span className={style.btn_group}>
-          {data && <CommentReply image={image} parent={comment._id} />}
+          {data && <CommentReplyBtn comment={comment} />}
         </span>
 
         {comment.replies.length > 0 && (
@@ -53,7 +53,7 @@ export default function CommentView({ comment, image }) {
         comment.replies.map(function (reply) {
           return (
             <div key={reply._id} className={style.reply_wrapper}>
-              <CommentView comment={reply} image={image} />
+              <CommentView comment={reply} />
             </div>
           );
         })}

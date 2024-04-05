@@ -1,13 +1,13 @@
 "use client";
 
-import style from "./CommentReply.module.css";
+import style from "./CommentReplyBtn.module.css";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { getCookie } from "cookies-next";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
-export default function CommentReply({ image, parent }) {
+export default function CommentReplyBtn({ comment }) {
   const [isReply, setIsReply] = useState(false);
   const [rows, setRows] = useState(0);
   const [message, setMessage] = useState("");
@@ -33,20 +33,20 @@ export default function CommentReply({ image, parent }) {
   };
 
   const handleComment = async () => {
-    const comment = {
+    const commentObj = {
       message,
       uploader: data.id,
     };
 
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/${parent}/reply/${image._id}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/${comment._id}/reply/${comment.image}`,
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${auth_token}`,
         },
-        body: JSON.stringify(comment),
+        body: JSON.stringify(commentObj),
       }
     );
 

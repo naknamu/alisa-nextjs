@@ -10,17 +10,7 @@ export default function CommentBtn({ image }) {
   const router = useRouter();
 
   useEffect(() => {
-    const getComment = async () => {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/comments/`);
-      const data = await res.json();
-
-      const image_comment = data.filter(
-        (comment) => image._id === comment.image
-      );
-      setCommentCount(image_comment.length);
-    };
-
-    getComment();
+    setCommentCount(image.comments.length);
   }, []);
 
   const handleClick = () => {
