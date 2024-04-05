@@ -1,6 +1,5 @@
 "use client";
 
-import { FaRegComment } from "react-icons/fa";
 import style from "./CommentReply.module.css";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
@@ -63,9 +62,6 @@ export default function CommentReply({ image, parent }) {
   return (
     <div className={style.container}>
       <span className={`icon ${style.wrapper}`} onClick={() => handleReply()}>
-        <span>
-          <FaRegComment />
-        </span>
         <p>Reply</p>
       </span>
 

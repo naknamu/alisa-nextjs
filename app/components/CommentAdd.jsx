@@ -8,7 +8,7 @@ import { getCookie } from "cookies-next";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
-export default function CommentAdd({ image, setIsReply, isReply, parent }) {
+export default function CommentAdd({ image }) {
   const [isClick, setIsClick] = useState(false);
   const [rows, setRows] = useState(0);
   const [message, setMessage] = useState("");
@@ -24,7 +24,6 @@ export default function CommentAdd({ image, setIsReply, isReply, parent }) {
   const handleCancel = () => {
     setIsClick(false);
     setRows(0);
-    setIsReply(false);
   };
 
   const ref = useClickAway(() => {
@@ -41,7 +40,6 @@ export default function CommentAdd({ image, setIsReply, isReply, parent }) {
       image: image._id,
       message,
       uploader: data.id,
-      parent,
     };
 
     const res = await fetch(
@@ -59,7 +57,6 @@ export default function CommentAdd({ image, setIsReply, isReply, parent }) {
     if (res.status === 200) {
       toast.success("Comment added.");
       setIsClick(false);
-      setIsReply(false);
       setRows(0);
       setMessage("");
       router.refresh();
@@ -77,7 +74,7 @@ export default function CommentAdd({ image, setIsReply, isReply, parent }) {
         onChange={(e) => handleChange(e)}
         value={message}
       />
-      {(isClick || isReply) && (
+      {isClick && (
         <span className={style.btn_group} ref={ref}>
           <button className={style.cancelbtn} onClick={() => handleCancel()}>
             Cancel

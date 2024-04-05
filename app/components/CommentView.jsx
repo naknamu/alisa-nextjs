@@ -1,10 +1,23 @@
+"use client";
+
+import { useState } from "react";
 import CommentReply from "./CommentReply";
 import style from "./CommentView.module.css";
 import DateUploaded from "./DateUploaded";
-import { getSession } from "../actions";
+import { useSession } from "next-auth/react";
+import { FiPlusCircle, FiMinusCircle } from "react-icons/fi";
 
-export default async function CommentView({ comment, image }) {
-  const session = await getSession();
+export default function CommentView({ comment, image }) {
+  const { data } = useSession();
+  const [hideReply, setHideReply] = useState(true);
+
+  const handleToggle = () => {
+    if (hideReply) {
+      setHideReply(false);
+    } else {
+      setHideReply(true);
+    }
+  };
 
   return (
     <div className={style.container}>
@@ -18,10 +31,25 @@ export default async function CommentView({ comment, image }) {
           <p>{comment.message}</p>
         </span>
 
-        {session && <CommentReply image={image} parent={comment._id} />}
+        <span className={style.btn_group}>
+          {data && <CommentReply image={image} parent={comment._id} />}
+        </span>
+
+        {comment.replies.length > 0 && (
+          <button
+            onClick={() => handleToggle()}
+            className={style.hide_reply_btn}
+          >
+            {hideReply && <FiPlusCircle />}
+            {!hideReply && <FiMinusCircle />}
+          </button>
+        )}
       </div>
 
+      <span className={style.reply_vertical_line}></span>
+
       {comment.replies.length > 0 &&
+        !hideReply &&
         comment.replies.map(function (reply) {
           return (
             <div key={reply._id} className={style.reply_wrapper}>

@@ -8,8 +8,6 @@ import { getCookie } from "cookies-next";
 import { getSession, getImageDetail } from "@/app/actions";
 import { cookies } from "next/headers";
 import CommentBtn from "@/app/components/CommentBtn";
-import CommentAdd from "@/app/components/CommentAdd";
-import CommentView from "@/app/components/CommentView";
 import CommentSection from "@/app/components/CommentSection";
 
 export async function generateMetadata({ params, searchParams }, parent) {
