@@ -21,7 +21,7 @@ export default function CommentBtn({ image }) {
     };
 
     getComment();
-  });
+  }, []);
 
   const handleClick = () => {
     router.push(`/images/${image.slug}`);
