@@ -39,6 +39,9 @@
     gap: 1rem;
     justify-content: center;
     align-items: center;
+  }
+
+  .btn_notif {
     color: var(--accent);
   }
 }

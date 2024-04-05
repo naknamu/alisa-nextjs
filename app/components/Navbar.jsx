@@ -20,8 +20,8 @@ export default async function Navbar() {
         <LogBtn />
       </div>
       <div className={style.btn_mobile}>
+        {session && <span className={style.btn_notif}><Notification /></span>}
         <MenuMobile categories={categories} />
-        {session && <Notification />}
       </div>
     </nav>
   );

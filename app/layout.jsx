@@ -34,7 +34,7 @@ export default async function RootLayout({ children }) {
       <body className={inter.className}>
         <Provider session={session}>
           <Navbar />
-          <NextTopLoader showSpinner={false} />
+          <NextTopLoader showSpinner={false} color="#8a2be2"/>
           <Toaster position="bottom-center" />
           {children}
         </Provider>
