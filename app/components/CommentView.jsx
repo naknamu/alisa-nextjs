@@ -11,12 +11,21 @@ import CommentDeleteBtn from "./CommentDeleteBtn";
 export default function CommentView({ comment }) {
   const { data } = useSession();
   const [hideReply, setHideReply] = useState(true);
+  const [isShow, setIsShow] = useState(false);
 
   const handleToggle = () => {
     if (hideReply) {
       setHideReply(false);
     } else {
       setHideReply(true);
+    }
+  };
+
+  const handleShow = () => {
+    if (isShow) {
+      setIsShow(false);
+    } else {
+      setIsShow(true);
     }
   };
 
@@ -33,7 +42,26 @@ export default function CommentView({ comment }) {
           {comment.isDeleted ? (
             <div className={style.comment_deleted}>Comment Deleted</div>
           ) : (
-            <p>{comment.message}</p>
+            <p>
+              {comment.message.length > 200 ? (
+                <span>
+                  {!isShow ? (
+                    <p>{comment.message.substring(0, 200)}...</p>
+                  ) : (
+                    <p>{comment.message}</p>
+                  )}
+                  <button
+                    className={style.show_more_btn}
+                    onClick={() => handleShow()}
+                  >
+                    {!isShow && <span>Show more</span>}
+                    {isShow && <span>Hide</span>}
+                  </button>
+                </span>
+              ) : (
+                comment.message
+              )}
+            </p>
           )}
         </span>
 
@@ -55,7 +83,7 @@ export default function CommentView({ comment }) {
         )}
       </div>
 
-      <span className={style.reply_vertical_line}></span>
+      {!hideReply && <span className={style.reply_vertical_line}></span>}
 
       {comment.replies.length > 0 &&
         !hideReply &&

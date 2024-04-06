@@ -63,3 +63,15 @@
   text-align: center;
   background-color: var(--background-primary);
 }
+
+.show_more_btn {
+  cursor: pointer;
+  color: var(--accent);
+  background: none;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.show_more_btn:hover {
+  text-decoration: underline;
+}
