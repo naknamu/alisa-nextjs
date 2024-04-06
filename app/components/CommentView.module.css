@@ -1,56 +1,65 @@
-
 .container {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-    position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  position: relative;
 }
 
 .card {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    background-color: white;
-    border-radius: 12px;
-    padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: white;
+  border-radius: 12px;
+  padding: 8px 12px;
 }
 
 .header {
-    display: flex;
-    font-size: 14px;
-    gap: 1rem;
+  display: flex;
+  font-size: 14px;
+  gap: 1rem;
 }
 
 .uploader {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .reply_wrapper {
-    margin-left: 1.5rem;
+  margin-left: 1.5rem;
 }
 
 .hide_reply_btn {
-    position: absolute;
-    top: 4.5rem;
-    left: -1rem;
-    color: var(--accent);
-    cursor: pointer;
+  position: absolute;
+  top: 4.5rem;
+  left: -1rem;
+  color: var(--accent);
+  cursor: pointer;
 }
 
 .reply_vertical_line {
-    height: calc(100% - 92px);
-    position: absolute;
-    border-left: 2px solid rgba(0, 0, 0, 0.2);
-    top: 5.55rem;
-    left: -0.55rem;
+  height: calc(100% - 92px);
+  position: absolute;
+  border-left: 2px solid rgba(0, 0, 0, 0.2);
+  top: 5.55rem;
+  left: -0.55rem;
 }
 
 .btn_group {
-    margin-left: 1rem;
+  margin-left: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.comment_deleted {
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.6);
+  border-radius: 16px;
+  text-align: center;
+  background-color: var(--background-primary);
 }

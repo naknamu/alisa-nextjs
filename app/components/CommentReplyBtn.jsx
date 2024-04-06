@@ -61,9 +61,9 @@ export default function CommentReplyBtn({ comment }) {
 
   return (
     <div className={style.container}>
-      <span className={`icon ${style.wrapper}`} onClick={() => handleReply()}>
-        <p>Reply</p>
-      </span>
+      <p className={style.reply_btn} onClick={() => handleReply()}>
+        Reply
+      </p>
 
       {isReply && (
         <div className={style.add_reply}>

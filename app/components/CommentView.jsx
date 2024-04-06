@@ -6,6 +6,7 @@ import style from "./CommentView.module.css";
 import DateUploaded from "./DateUploaded";
 import { useSession } from "next-auth/react";
 import { FiPlusCircle, FiMinusCircle } from "react-icons/fi";
+import CommentDeleteBtn from "./CommentDeleteBtn";
 
 export default function CommentView({ comment }) {
   const { data } = useSession();
@@ -28,11 +29,19 @@ export default function CommentView({ comment }) {
             <span>•</span>
             <DateUploaded date={comment.createdAt} />
           </span>
-          <p>{comment.message}</p>
+
+          {comment.isDeleted ? (
+            <div className={style.comment_deleted}>Comment Deleted</div>
+          ) : (
+            <p>{comment.message}</p>
+          )}
         </span>
 
         <span className={style.btn_group}>
           {data && <CommentReplyBtn comment={comment} />}
+          {data && data.id === comment.uploader._id && !comment.isDeleted && (
+            <CommentDeleteBtn comment={comment} />
+          )}
         </span>
 
         {comment.replies.length > 0 && (
