@@ -7,6 +7,7 @@ import { useSession } from "next-auth/react";
 import { getCookie } from "cookies-next";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { notifyNewComment } from "../actions";
 
 export default function CommentAdd({ image }) {
   const [isClick, setIsClick] = useState(false);
@@ -55,11 +56,13 @@ export default function CommentAdd({ image }) {
     );
 
     if (res.status === 200) {
+      router.refresh();
+      notifyNewComment(image, data.user.name, message);
+      console.log(data.user.name);
       toast.success("Comment added.");
       setIsClick(false);
       setRows(0);
       setMessage("");
-      router.refresh();
     }
   };
 

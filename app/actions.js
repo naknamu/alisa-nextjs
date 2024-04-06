@@ -179,6 +179,22 @@ export async function notifyWelcome(new_uploader) {
   });
 }
 
+// NOTIFY COMMENT IMAGE
+export async function notifyNewComment(image, uploader, value) {
+  await knockClient.notify("new-comment", {
+    recipients: [image.uploader.username],
+    actor: uploader,
+    data: {
+      image: {
+        slug: image.slug
+      },
+      comment: {
+        message: value
+      }
+    },
+  });
+}
+
 // DELETE COMMENT PERMANENTLY
 export async function deleteComment(comment) {
   const auth_token = getCookie("auth_token", { cookies });
