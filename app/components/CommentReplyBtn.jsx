@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react";
 import { getCookie } from "cookies-next";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { notifyNewReply } from "../actions"; 
 
 export default function CommentReplyBtn({ comment }) {
   const [isReply, setIsReply] = useState(false);
@@ -39,7 +40,7 @@ export default function CommentReplyBtn({ comment }) {
     };
 
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/${comment._id}/reply/${comment.image}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/${comment._id}/reply/${comment.image._id}`,
       {
         method: "POST",
         headers: {
@@ -56,6 +57,7 @@ export default function CommentReplyBtn({ comment }) {
       setRows(0);
       setMessage("");
       router.refresh();
+      notifyNewReply(comment, data.user.name, message)
     }
   };
 

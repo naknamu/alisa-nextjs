@@ -179,7 +179,7 @@ export async function notifyWelcome(new_uploader) {
   });
 }
 
-// NOTIFY COMMENT IMAGE
+// NOTIFY NEW COMMENT ON IMAGE
 export async function notifyNewComment(image, uploader, value) {
   await knockClient.notify("new-comment", {
     recipients: [image.uploader.username],
@@ -187,6 +187,22 @@ export async function notifyNewComment(image, uploader, value) {
     data: {
       image: {
         slug: image.slug
+      },
+      comment: {
+        message: value
+      }
+    },
+  });
+}
+
+// NOTIFY NEW REPLY
+export async function notifyNewReply(comment, uploader, value) {
+  await knockClient.notify("new-reply", {
+    recipients: [comment.uploader.slug],
+    actor: uploader,
+    data: {
+      image: {
+        slug: comment.image.slug
       },
       comment: {
         message: value
