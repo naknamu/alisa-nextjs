@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react";
 import { getCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import toast from "react-hot-toast";
 
 export default function UpdateImage({ params }) {
   const [image, setImage] = useState(null);
@@ -101,6 +102,7 @@ export default function UpdateImage({ params }) {
     );
 
     if (res.status === 200) {
+      toast.success("Upload completed!")
       router.push(`/images/${image.slug}`);
       router.refresh();
     }
