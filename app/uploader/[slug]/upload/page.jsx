@@ -5,6 +5,7 @@ import style from "./page.module.css";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 const _ = require("lodash");
+import toast from "react-hot-toast";
 
 export default function Upload({ params }) {
   const router = useRouter();
@@ -129,6 +130,7 @@ export default function Upload({ params }) {
     });
 
     if (res.status === 200) {
+      toast.success("Uploaded successfully!")
       router.push(`/uploader/${params.slug}`);
       router.refresh();
     }

@@ -101,9 +101,11 @@ export default function UpdateImage({ params }) {
       },
     );
 
+    const data = await res.json();
+
     if (res.status === 200) {
-      toast.success("Upload completed!")
-      router.push(`/images/${image.slug}`);
+      toast.success("Update completed!")
+      router.push(`/images/${data.image.slug}`);
       router.refresh();
     }
   };
@@ -186,8 +188,8 @@ export default function UpdateImage({ params }) {
           }}
           disabled={!caption || !(chosenCategory.length > 0) || isUploading}
         >
-          {isUploading && <span>Uploading...</span>}
-          {!isUploading && <span>Upload Image</span>}
+          {isUploading && <span>Updating...</span>}
+          {!isUploading && <span>Update Image</span>}
         </button>
       </form>
     </main>
