@@ -9,15 +9,15 @@ const INITIAL_NUMBER_OF_IMAGES = parseInt(
   process.env.NEXT_PUBLIC_INITIAL_NUMBER,
 );
 
-export async function generateStaticParams() {
-  const categories = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/categories`,
-  ).then((res) => res.json());
+// export async function generateStaticParams() {
+//   const categories = await fetch(
+//     `${process.env.NEXT_PUBLIC_API_URL}/categories`,
+//   ).then((res) => res.json());
 
-  return categories.map((category) => ({
-    slug: category.slug,
-  }));
-}
+//   return categories.map((category) => ({
+//     slug: category.slug,
+//   }));
+// }
 
 // fetch categories from API
 async function getCategories() {
