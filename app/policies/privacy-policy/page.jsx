@@ -1,8 +1,5 @@
 import style from "./page.module.css";
 
-export const dynamic = "force-static";
-export const revalidate = false;
-
 export default function page() {
   return (
     <main>
