@@ -4,14 +4,10 @@ import ImageCards from "./components/ImageCards";
 import LatestUpload from "./components/LatestUpload";
 import ProfileBtn from "./components/ProfileBtn";
 import Footer from "./components/Footer";
-import { getCategories, getSession, getImagesPaginated } from "./actions";
-
-const INITIAL_NUMBER_OF_IMAGES = parseInt(
-  process.env.NEXT_PUBLIC_INITIAL_NUMBER,
-);
+import { getCategories, getSession, getImages } from "./actions";
 
 export default async function Home() {
-  const initialImages = await getImagesPaginated(0, INITIAL_NUMBER_OF_IMAGES);
+  const images = await getImages();
   const categories = await getCategories();
   const session = await getSession();
   const uploaderName = session?.user?.name;
@@ -27,7 +23,7 @@ export default async function Home() {
       </div>
       <div className={style.middle_column}>
         <div className={`${style.middle}`}>
-          <ImageCards initialImages={initialImages} />
+          <ImageCards images={images} />
         </div>
       </div>
       <div className={style.right_column}>

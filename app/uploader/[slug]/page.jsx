@@ -1,27 +1,13 @@
 import style from "@/app/column.module.css";
 import styles from "./page.module.css";
 import Link from "next/link";
-import {
-  getSession,
-  getUploaderImagesPaginated,
-  getUploader,
-} from "@/app/actions";
+import { getSession, getUploaderImages, getUploader } from "@/app/actions";
 import UploaderCards from "@/app/components/UploaderCards";
 import BlurToggle from "@/app/components/BlurToggle";
 
-const INITIAL_NUMBER_OF_IMAGES = parseInt(
-  process.env.NEXT_PUBLIC_INITIAL_NUMBER,
-);
-
 export default async function UploaderDetails({ params }) {
   const uploader = await getUploader(params.slug);
-
-  const uploaderImages = await getUploaderImagesPaginated(
-    params.slug,
-    0,
-    INITIAL_NUMBER_OF_IMAGES,
-  );
-
+  const images = await getUploaderImages(params.slug);
   const session = await getSession();
 
   return (
@@ -54,12 +40,7 @@ export default async function UploaderDetails({ params }) {
             <h3 className="title">{uploader.username}&#39;s Uploads</h3>
           )}
 
-          {uploaderImages && (
-            <UploaderCards initialImages={uploaderImages} slug={params.slug} />
-          )}
-          {/* {uploaderImages.length === 0 && (
-            <span className={styles.empty}>No images uploaded yet. 😢</span>
-          )} */}
+          {images && <UploaderCards images={images} />}
         </div>
       </div>
     </main>

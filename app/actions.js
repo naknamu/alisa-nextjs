@@ -45,9 +45,13 @@ export async function removeLove(uploaderslug, imageid, auth_token) {
   return res.json();
 }
 
-// fetch categories from API
+// fetch all categories from API
 export async function getCategories() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories`, {
+    next: {
+      revalidate: 60 * 15,
+    },
+  });
   return res.json();
 }
 
@@ -78,21 +82,7 @@ export async function getLatestUpload() {
   return res.json();
 }
 
-// test fetching for infinite scroll
-export async function getImagesPaginated(startIndex, size) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/images`, {
-    next: {
-      revalidate: 0,
-    },
-  });
-  const data = await res.json();
-  const endIndex = startIndex + size;
-  const paginated = data.slice(startIndex, endIndex);
-
-  return paginated;
-}
-
-export async function getImagesByCategoryPaginated(slug, startIndex, size) {
+export async function getImagesByCategory(slug) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/images/`, {
     next: {
       revalidate: 60 * 15,
@@ -106,16 +96,13 @@ export async function getImagesByCategoryPaginated(slug, startIndex, size) {
     image.category.some((category) => slug === category.slug)
   );
 
-  const endIndex = startIndex + size;
-  const paginated = images.slice(startIndex, endIndex);
-
-  return paginated;
+  return images;
 }
 
-export async function getUploaderImagesPaginated(slug, startIndex, size) {
+export async function getUploaderImages(slug) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/images/`, {
     next: {
-      revalidate: 0,
+      revalidate: 60,
     },
   });
 
@@ -124,10 +111,7 @@ export async function getUploaderImagesPaginated(slug, startIndex, size) {
   // filter images uploaded by the uploader
   const images = data.filter((image) => slug === image.uploader.slug);
 
-  const endIndex = startIndex + size;
-  const paginated = images.slice(startIndex, endIndex);
-
-  return paginated;
+  return images;
 }
 
 // fetch image detail from the API
@@ -186,11 +170,11 @@ export async function notifyNewComment(image, uploader, value) {
     actor: uploader,
     data: {
       image: {
-        slug: image.slug
+        slug: image.slug,
       },
       comment: {
-        message: value
-      }
+        message: value,
+      },
     },
   });
 }
@@ -202,11 +186,11 @@ export async function notifyNewReply(comment, uploader, value) {
     actor: uploader,
     data: {
       image: {
-        slug: comment.image.slug
+        slug: comment.image.slug,
       },
       comment: {
-        message: value
-      }
+        message: value,
+      },
     },
   });
 }
