@@ -14,8 +14,21 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Alisa - AI Pictures Sharing Platform",
-  description: "Browse, Share and Upload AI Images",
+  description: "Browse, Share and Upload AI Images for Free",
   metadataBase: new URL("https://alisa.pics"),
+  openGraph: {
+    title: "Alisa",
+    description: "Browse, Share and Upload AI Images for Free",
+    url: "https://alisa.pics",
+    siteName: "Alisa.pics",
+    images: [
+      {
+        url: "https://www.alisa.pics/static/images/og_image.webp",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
 };
 
 export default async function RootLayout({ children }) {
@@ -24,8 +37,8 @@ export default async function RootLayout({ children }) {
   if (session) {
     const knockClient = new Knock(process.env.KNOCK_SECRET_API_KEY);
     const knockUser = await knockClient.users.identify(session?.user?.name, {
-      name : session?.user?.name,
-      email: session?.user?.email
+      name: session?.user?.name,
+      email: session?.user?.email,
     });
   }
 
@@ -34,7 +47,7 @@ export default async function RootLayout({ children }) {
       <body className={inter.className}>
         <Provider session={session}>
           <Navbar />
-          <NextTopLoader showSpinner={false} color="#8a2be2"/>
+          <NextTopLoader showSpinner={false} color="#8a2be2" />
           <Toaster position="top-center" />
           {children}
         </Provider>
