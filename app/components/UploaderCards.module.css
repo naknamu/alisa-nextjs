@@ -8,10 +8,11 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+  justify-content: center;
 }
 
 .card_view > div > a {
-  height: 150px;
+  height: 250px;
 }
 
 .card_view > div > h2 {
@@ -24,4 +25,17 @@
 
 .card_view > div {
   padding: 0;
+}
+
+
+/* Mobile */
+@media (max-width: 700px) {
+
+  .card_view > div > a {
+    height: 200px;
+  }
+  
+  .card_view > div > a > img{
+    height: inherit;
+  }
 }
