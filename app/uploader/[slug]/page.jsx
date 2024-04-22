@@ -1,9 +1,10 @@
 import style from "@/app/column.module.css";
 import styles from "./page.module.css";
 import Link from "next/link";
-import { getSession, getUploaderImages, getUploader } from "@/app/actions";
+import { getSession, getUploaderImages, getUploader, setCardView } from "@/app/actions";
 import UploaderCards from "@/app/components/UploaderCards";
 import BlurToggle from "@/app/components/BlurToggle";
+import CardView from "@/app/components/CardView";
 
 export default async function UploaderDetails({ params }) {
   const uploader = await getUploader(params.slug);
@@ -33,14 +34,19 @@ export default async function UploaderDetails({ params }) {
       </div>
       <div className={style.middle_column}>
         <div className={`${style.middle}`}>
-          {session?.user?.email === uploader.email && (
-            <h3 className="title">My Uploads</h3>
-          )}
-          {session?.user?.email !== uploader.email && (
-            <h3 className="title">{uploader.username}&#39;s Uploads</h3>
-          )}
 
-          {images && <UploaderCards images={images} />}
+          <div className={styles.header}>
+            {session?.user?.email === uploader.email && (
+              <h3 className="title">My Uploads</h3>
+            )}
+            {session?.user?.email !== uploader.email && (
+              <h3 className="title">{uploader.username}&#39;s Uploads</h3>
+            )}
+
+            <CardView />
+          </div>
+
+          {images && <UploaderCards images={images}/>}
         </div>
       </div>
     </main>

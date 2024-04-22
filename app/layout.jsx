@@ -35,7 +35,7 @@ export default async function RootLayout({ children }) {
         <Provider session={session}>
           <Navbar />
           <NextTopLoader showSpinner={false} color="#8a2be2"/>
-          <Toaster position="bottom-center" />
+          <Toaster position="top-center" />
           {children}
         </Provider>
       </body>

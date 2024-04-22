@@ -4,6 +4,24 @@
   gap: 1rem;
 }
 
-.loader {
-  align-self: center;
+.card_view {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.card_view > div > a {
+  height: 150px;
+}
+
+.card_view > div > h2 {
+  display: none;
+}
+
+.card_view > div > div {
+  display: none;
+}
+
+.card_view > div {
+  padding: 0;
 }
