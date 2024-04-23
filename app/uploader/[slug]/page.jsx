@@ -1,7 +1,7 @@
 import style from "@/app/column.module.css";
 import styles from "./page.module.css";
 import Link from "next/link";
-import { getSession, getUploaderImages, getUploader, setCardView } from "@/app/actions";
+import { getSession, getUploaderImages, getUploader } from "@/app/actions";
 import UploaderCards from "@/app/components/UploaderCards";
 import BlurToggle from "@/app/components/BlurToggle";
 import CardView from "@/app/components/CardView";
