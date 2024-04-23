@@ -23,6 +23,9 @@ export const metadata = {
     siteName: "Alisa.pics",
     images: [
       {
+        url: "https://www.alisa.pics/static/images/alisa_fb_og.png",
+      },
+      {
         url: "https://www.alisa.pics/static/images/og_image.webp",
       },
     ],

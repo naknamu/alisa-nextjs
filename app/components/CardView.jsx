@@ -12,6 +12,7 @@ import style from "./CardView.module.css";
 export default function CardView() {
   const router = useRouter();
   const [isCardView, setIsCardView] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     // Initialize isCardView to 'TRUE' if changed
@@ -29,6 +30,7 @@ export default function CardView() {
       setIsCardView(true);
     }
 
+    setIsOpen(false);
     toast.success("Image view was changed.");
     router.refresh();
   };
@@ -39,11 +41,18 @@ export default function CardView() {
         className="icon"
         onClick={() => handleClick()}
         data-tooltip-id="my-tooltip-1"
+        onMouseEnter={() => setIsOpen(true)}
+        onMouseLeave={() => setIsOpen(false)}
       >
         {isCardView && <RxViewGrid />}
         {!isCardView && <CiGrid2H />}
       </div>
-      <Tooltip id="my-tooltip-1" place="bottom" content="Change image view" />
+      <Tooltip
+        id="my-tooltip-1"
+        place="bottom"
+        content="Change image view"
+        isOpen={isOpen}
+      />
     </div>
   );
 }
