@@ -102,7 +102,7 @@ export async function getImagesByCategory(slug) {
 export async function getUploaderImages(slug) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/images/`, {
     next: {
-      revalidate: 60,
+      revalidate: 0,
     },
   });
 

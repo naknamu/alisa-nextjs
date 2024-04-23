@@ -37,10 +37,10 @@ export default async function UploaderDetails({ params }) {
 
           <div className={styles.header}>
             {session?.user?.email === uploader.email && (
-              <h3 className="title">My Uploads</h3>
+              <h3>My Uploads</h3>
             )}
             {session?.user?.email !== uploader.email && (
-              <h3 className="title">{uploader.username}&#39;s Uploads</h3>
+              <h3>{uploader.username}&#39;s Uploads</h3>
             )}
 
             <CardView />
