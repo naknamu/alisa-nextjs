@@ -11,7 +11,7 @@ import { useSession } from "next-auth/react";
 import { getCookie } from "cookies-next";
 import CommentBtn from "./CommentBtn";
 
-export default function ImageCard({ image }) {
+export default function ImageCard({ image, index }) {
   const { data } = useSession();
 
   const getImageSource = (image) => {
@@ -61,7 +61,7 @@ export default function ImageCard({ image }) {
           width={"500"}
           height={"300"}
           sizes="(max-width: 768px) 468px, 90.91vw, (max-width: 1200px) 100vw, 468px"
-          priority={true}
+          priority={index === 0}
         />
       </Link>
       <div className={style.footer}>

@@ -12,8 +12,8 @@ export default function ImageCards({ images }) {
 
   return (
     <div className={style.container}>
-      {images.map((image) => (
-        <ImageCard key={image._id} image={image} />
+      {images.map((image, index) => (
+        <ImageCard key={image._id} image={image} index={index}/>
       ))}
       <Empty />
     </div>

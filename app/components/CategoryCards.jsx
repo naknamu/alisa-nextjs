@@ -11,8 +11,8 @@ const ImageCard = dynamic(() => import("./ImageCard"), {
 export default function CategoryCards({ images}) {
   return (
     <div className={style.container}>
-      {images.map((image) => (
-        <ImageCard key={image._id} image={image} />
+      {images.map((image, index) => (
+        <ImageCard key={image._id} image={image} index={index} />
       ))}
       <Empty />
     </div>

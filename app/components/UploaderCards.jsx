@@ -20,8 +20,8 @@ export default async function UploaderCards({ images }) {
             : style.container
         }
       >
-        {images.map((image) => (
-          <ImageCard key={image._id} image={image} />
+        {images.map((image, index) => (
+          <ImageCard key={image._id} image={image} index={index} />
         ))}
       </div>
       <Empty />
