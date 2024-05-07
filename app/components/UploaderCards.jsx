@@ -1,14 +1,8 @@
 import style from "./UploaderCards.module.css";
-import dynamic from "next/dynamic";
-import SkeletonLoader from "./SkeletonLoader";
 import Empty from "./Empty";
 import { getCookie } from "cookies-next";
 import { cookies } from "next/headers";
-
-const ImageCard = dynamic(() => import("./ImageCard"), {
-  ssr: false,
-  loading: () => <SkeletonLoader />,
-});
+import ImageCard from "./ImageCard";
 
 export default async function UploaderCards({ images }) {
   return (

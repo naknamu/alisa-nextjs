@@ -1,5 +1,3 @@
-"use client";
-
 import style from "./ImageCard.module.css";
 import DateUploaded from "./DateUploaded";
 import MoreHoriz from "./MoreHoriz";
@@ -7,12 +5,12 @@ import LoveBtn from "./LoveBtn";
 import ShareBtn from "./ShareBtn";
 import Image from "next/image";
 import Link from "next/link";
-import { useSession } from "next-auth/react";
 import { getCookie } from "cookies-next";
 import CommentBtn from "./CommentBtn";
+import { getSession } from "../actions";
 
-export default function ImageCard({ image, index }) {
-  const { data } = useSession();
+export default async function ImageCard({ image, index }) {
+  const session = await getSession();
 
   const getImageSource = (image) => {
     if (image.source.includes("backblazeb2.com")) {
@@ -25,10 +23,10 @@ export default function ImageCard({ image, index }) {
   const blurNSFW = (image) => {
     let isNSFW = image.category.some((category) => category.name === "NSFW");
 
-    if (!data && !isNSFW) {
+    if (!session && !isNSFW) {
       return style.unblur;
     } else if (isNSFW) {
-      if (!data || getCookie("nsfw") === "OFF") {
+      if (!session || getCookie("nsfw") === "OFF") {
         return style.blur;
       } else {
         return style.unblur;
@@ -49,7 +47,7 @@ export default function ImageCard({ image, index }) {
           </div>
         </div>
         <div className={style.right_header}>
-          {data && <MoreHoriz image={image} />}
+          {session && <MoreHoriz image={image} />}
         </div>
       </div>
       <h2 className={style.h2}>{image.caption}</h2>
