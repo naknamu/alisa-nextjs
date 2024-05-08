@@ -1,6 +1,12 @@
 import style from "./CategoryCards.module.css";
 import Empty from "./Empty";
-import ImageCard from "./ImageCard";
+import dynamic from "next/dynamic";
+import SkeletonLoader from "./SkeletonLoader";
+
+const ImageCard = dynamic(() => import("./ImageCard"), {
+  ssr: false,
+  loading: () => <SkeletonLoader />,
+});
 
 export default function CategoryCards({ images}) {
   return (
