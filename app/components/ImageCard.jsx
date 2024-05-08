@@ -56,8 +56,8 @@ export default async function ImageCard({ image, index }) {
           className={`${style.img} ${blurNSFW(image)}`}
           src={getImageSource(image)}
           alt={image.caption}
-          width={"500"}
-          height={"300"}
+          width={"300"}
+          height={"500"}
           sizes="(max-width: 768px) 468px, 90.91vw, (max-width: 1200px) 100vw, 468px"
           priority={index === 0}
         />
