@@ -18,9 +18,18 @@ export default async function Navbar() {
       <div className={style.btn_desktop}>
         {session && <Notification />}
         <LogBtn />
+        {!session && (
+          <Link href="/signup" className={style.signup_btn}>
+            <b>Sign up</b>
+          </Link>
+        )}
       </div>
       <div className={style.btn_mobile}>
-        {session && <span className={style.btn_notif}><Notification /></span>}
+        {session && (
+          <span className={style.btn_notif}>
+            <Notification />
+          </span>
+        )}
         <MenuMobile categories={categories} />
       </div>
     </nav>

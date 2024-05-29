@@ -24,6 +24,19 @@
   align-items: center;
 }
 
+.signup_btn {
+  background-color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 16px;
+  padding: 6px 8px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.signup_btn:hover {
+  background-image: linear-gradient(rgb(0 0 0/40%) 0 0);
+}
+
 /* Mobile */
 @media (max-width: 700px) {
   .nav {

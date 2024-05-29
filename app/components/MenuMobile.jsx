@@ -54,6 +54,11 @@ export default function MenuMobile({ categories }) {
                 </Link>
               )}
               {data && <BlurToggle />}
+              {!data && (
+                <Link href="/signup" className={style.signup_btn}>
+                  <b>Sign up</b>
+                </Link>
+              )}
               <CategoryBtn categories={categories} />
               <LogBtn />
               <Footer />
