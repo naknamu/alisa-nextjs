@@ -66,7 +66,6 @@ export default function MenuMobile({ categories }) {
                     <b>Sign up</b>
                   </Link>
                 )}
-                <b>/</b>
                 <LogBtn />
               </div>
 
