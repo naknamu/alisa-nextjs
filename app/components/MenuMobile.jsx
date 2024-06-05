@@ -50,9 +50,7 @@ export default function MenuMobile({ categories }) {
               </div>
             </div>
 
-            <div
-              className={style.menu_btn_group}
-            >
+            <div className={style.menu_btn_group}>
               {data && (
                 <Link
                   href={`/uploader/${data.user.name}/upload`}
@@ -63,22 +61,23 @@ export default function MenuMobile({ categories }) {
               )}
               {data && <BlurToggle />}
               <div className={style.wrapper}>
-              {!data && (
-                <Link href="/signup" className={style.signup_btn}>
-                  <b>Sign up</b>
-                </Link>
-              )}
-              <b>/</b>
-              <LogBtn />
+                {!data && (
+                  <Link href="/signup" className={style.signup_btn}>
+                    <b>Sign up</b>
+                  </Link>
+                )}
+                <b>/</b>
+                <LogBtn />
               </div>
 
-              <Link href="/leaderboard"><b>🏆 Leaderboard</b></Link>
-              {/* <CategoryBtn categories={categories} /> */}
+              <Link href="/leaderboard">
+                <b>🏆 Leaderboard</b>
+              </Link>
+
               <div onClick={() => handleCategory()}>
                 {!isCategory && <b>🔻Categories</b>}
                 {isCategory && <b>🔺Categories</b>}
               </div>
-
               {isCategory && <CategoryBtn categories={categories} />}
 
               <Footer />
