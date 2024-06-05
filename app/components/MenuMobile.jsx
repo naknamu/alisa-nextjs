@@ -74,7 +74,10 @@ export default function MenuMobile({ categories }) {
 
               <Link href="/leaderboard"><b>🏆 Leaderboard</b></Link>
               {/* <CategoryBtn categories={categories} /> */}
-              <div onClick={() => handleCategory()}><b>🔻Categories</b></div>
+              <div onClick={() => handleCategory()}>
+                {!isCategory && <b>🔻Categories</b>}
+                {isCategory && <b>🔺Categories</b>}
+              </div>
 
               {isCategory && <CategoryBtn categories={categories} />}
 
