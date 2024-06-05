@@ -68,7 +68,7 @@
   .menu_btn_group {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
   }
 
   .uploadbtn {
@@ -79,5 +79,11 @@
     cursor: pointer;
     color: white;
     text-align: center;
+  }
+
+  .wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 }

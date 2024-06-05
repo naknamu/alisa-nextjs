@@ -17,6 +17,7 @@ export default async function Navbar() {
       </Link>
       <div className={style.btn_desktop}>
         {session && <Notification />}
+        <Link href="/leaderboard" className="btn_primary"><b>LeaderBoard</b></Link>
         <LogBtn />
         {!session && (
           <Link href="/signup" className={style.signup_btn}>
